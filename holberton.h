@@ -12,16 +12,6 @@
 #include <fcntl.h>
 
 /* space for function prototypes*/
-int process_selector(char **command, int status)
-
-/* space for structure definition*/
-
-extern char **environ;
-stat
-
-/* space for auxiliar funcitons*/
-char *_getenv(const char *name);
-
-/* space for store paths*/
+int process_selector(char **command, int *status);
 
 #endif  
