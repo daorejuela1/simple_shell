@@ -11,7 +11,10 @@
 #include <sys/stat.h>
 #include <fcntl.h>
 
-/* space for function prototypes*/
+/* Space for function prototypes*/
+int _putchar(char c);
+int _puts(char *s);
+
 int process_selector(char **command, int *status);
 
 #endif  
