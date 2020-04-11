@@ -45,7 +45,7 @@ int main(int argc, char *argv[])
 		if (stat(line, &st) == 0 && access(line, X_OK) == 0)
 		{
 			_puts("Valid file\n");
-			process_selector(&command, &status);
+			process_selector(command, &status);
 		}
 		else
 		{
