@@ -7,15 +7,33 @@
  */
 int main(int argc, char *argv[])
 {
-	int read, status, len = 0;
+	int read, status;
 	char *line = NULL;
+	char interactive = 0;
 	const char *delim = " \n\t\r";
 	char *command[1024];
 	struct stat st;
+	size_t len = 0;
 	/*argv = "hola" "mundo" 0*/
+
+	if (argc > 1)
+	{
+		_puts(argv[0]);
+		_puts(":");
+		printf("%d\n", __LINE__);
+		_puts(" : Can't open ");
+		_puts(argv[1]);
+		_puts("\n");
+		exit(127);
+	}
+	if (isatty(fileno(stdin)))
+		interactive = 1;
+	else
+		interactive = 0;
 	while (1)
 	{
-		_puts("$ ");
+		if (interactive)
+			_puts("$ ");
 		read =  getline(&line, &len, stdin);
 		if (read == -1)
 		{
@@ -23,12 +41,22 @@ int main(int argc, char *argv[])
 			break;
 		}
 		command[0] = strtok(line, delim);
-		command[1] = NULL;
+		command[1] = command[0];
 		if (stat(line, &st) == 0 && access(line, X_OK) == 0)
 		{
 			_puts("Valid file\n");
 			process_selector(&command, &status);
 		}
+		else
+		{
+			_puts(argv[0]);
+			printf("%d\n", __LINE__);
+			_puts(command[0]);
+			_puts(": not found");
+			_puts("\n");
+		}
+		if (interactive == 0)
+			break;
 	}
 	free(line);
 	return (0);
