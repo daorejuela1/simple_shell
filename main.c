@@ -41,7 +41,7 @@ int main(int argc, char *argv[])
 			break;
 		}
 		command[0] = strtok(line, delim);
-		command[1] = command[0];
+		command[1] = NULL;
 		if (stat(line, &st) == 0 && access(line, X_OK) == 0)
 		{
 			_puts("Valid file\n");
