@@ -9,6 +9,7 @@
 int process_selector(char **command, int *status)
 {
 	pid_t children;
+	extern char **environ;
 
 	children = fork();
 	if (children < 0) /*Error*/
@@ -18,7 +19,7 @@ int process_selector(char **command, int *status)
 	}
 	if (children == 0) /*Children process*/
 	{
-		if (execve(command[0], command, NULL) == -1)
+		if (execve(command[0], command, environ) == -1)
 			perror("No such file or directory");
 	}
 	if (children > 0) /*current process*/
