@@ -9,7 +9,6 @@
 int process_selector(char **command, int *status)
 {
 	pid_t children;
-	extern char **environ;
 
 	children = fork();
 	if (children < 0) /*Error*/

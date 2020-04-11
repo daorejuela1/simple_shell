@@ -14,7 +14,8 @@
 /* Space for function prototypes*/
 int _putchar(char c);
 int _puts(char *s);
-
 int process_selector(char **command, int *status);
 
-#endif  
+/*space for extern variables*/
+extern char **environ;
+#endif
