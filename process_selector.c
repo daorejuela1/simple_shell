@@ -18,7 +18,6 @@ int process_selector(char **command, int *status)
 	}
 	if (children == 0) /*Children process*/
 	{
-		printf("El comando es: %s\n", command[0]);
 		if (execve(command[0], command, NULL) == -1)
 			perror("No such file or directory");
 	}
