@@ -26,6 +26,7 @@ int process_selector(char **command, int *status)
 	if (children > 0) /*current process*/
 	{
 		wait(status);
+		*status = WEXITSTATUS(*status);;
 	}
 return (0);
 }
