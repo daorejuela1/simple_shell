@@ -16,7 +16,7 @@
 int _putchar(char c);
 int _puts(char *s);
 int process_selector(char **command, int *status);
-void free_grid(char ***grid, int height);
+void free_grid(char **grid, int height);
 char **extract_string(char *string, int *data_length);
 void *_calloc(unsigned int nmemb, unsigned int size);
 char *_memset(char *s, char b, unsigned int n);

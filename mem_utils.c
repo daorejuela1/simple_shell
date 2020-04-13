@@ -5,14 +5,14 @@
  *@height: matrix row
  *Return: None
  */
-void free_grid(char ***grid, int height)
+void free_grid(char **grid, int height)
 {
 	int i;
 
 	for (i = 0; i < height; i++)
-		free(*grid[i]);
-	free(*grid);
-	*grid = NULL;
+		free(grid[i]);
+	free(grid);
+	grid = NULL;
 }
 
 /**
@@ -53,7 +53,7 @@ char **extract_string(char *string, int *data_length)
 		command[i] = calloc(strlen(token) + 1, 1);
 		if (command[i] == NULL)
 		{
-			free_grid(&command, i);
+			free_grid(command, i);
 			free(copy2);
 			return (NULL);
 		}

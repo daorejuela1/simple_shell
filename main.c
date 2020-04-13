@@ -29,7 +29,6 @@ int main(int argc, char *argv[])
 		counter++;
 		if (read == -1)
 		{
-			free_grid(&command, data_length);
 			_puts("\n");
 			break;
 		}
@@ -40,7 +39,7 @@ int main(int argc, char *argv[])
 				process_selector(command, &status);
 			else
 				status = errno_found(argv[0], counter, command[0]);
-			free_grid(&command, data_length);
+			free_grid(command, data_length);
 			data_length = 0;
 			if (interactive == 0)
 				break;
