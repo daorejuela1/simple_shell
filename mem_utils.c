@@ -103,3 +103,32 @@ char *_memset(char *s, char b, unsigned int n)
 	}
 	return (*pointer_to_s);
 }
+
+/**
+ *cal_digits - Find the number of digits in the number
+ *@n: Input number
+ *Return: Number base
+ */
+unsigned int cal_digits(unsigned int n)
+{
+	if (n > 999999999)
+		return (1000000000);
+	else if (n > 99999999)
+		return (100000000);
+	else if (n > 9999999)
+		return (10000000);
+	else if (n > 999999)
+		return (1000000);
+	else if (n > 99999)
+		return (100000);
+	else if (n > 9999)
+		return (10000);
+	else if (n > 999)
+		return (1000);
+	else if (n > 99)
+		return (100);
+	else if (n > 9)
+		return (10);
+	else
+		return (1);
+}

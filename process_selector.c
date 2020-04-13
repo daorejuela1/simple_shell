@@ -19,7 +19,9 @@ int process_selector(char **command, int *status)
 	if (children == 0) /*Children process*/
 	{
 		if (execve(command[0], command, environ) == -1)
-			perror("No such file or directory");
+		{
+			exit(2);
+		}
 	}
 	if (children > 0) /*current process*/
 	{

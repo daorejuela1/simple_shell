@@ -8,7 +8,7 @@
  */
 int main(int argc, char *argv[])
 {
-	int read, status, data_length = 0, counter = 0;
+	int read, status = 0, data_length = 0, counter = 0;
 	char interactive = 0, *line = NULL, **command = NULL;
 	struct stat st;
 	size_t len = 0;
@@ -39,7 +39,7 @@ int main(int argc, char *argv[])
 			if (stat(command[0], &st) == 0 && access(command[0], X_OK) == 0)
 				process_selector(command, &status);
 			else
-				errno_found(argv[0], counter, command[0]);
+				status = errno_found(argv[0], counter, command[0]);
 			free_grid(&command, data_length);
 			data_length = 0;
 			if (interactive == 0)
@@ -47,5 +47,5 @@ int main(int argc, char *argv[])
 			}
 	}
 	free(line);
-	return (0);
+	return (status);
 }
