@@ -1,5 +1,4 @@
 #include "holberton.h"
-#include "holberton.h"
 /**
  *_getenv - gets actual enviroment
  *@name: key of enviroment

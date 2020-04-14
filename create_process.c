@@ -8,7 +8,7 @@
  *@argv: main parameters
  *Return: modified path or null if failed
  */
-int create_process(char *line, int counter, char *envariable, char *argv[])
+int create_process(char *line, int counter, char *en_variable, char *argv[])
 {
 	int status = 0, data_length = 0;
 	char **command = NULL;
@@ -24,7 +24,7 @@ int create_process(char *line, int counter, char *envariable, char *argv[])
 			status = errno_per(argv[0], counter, command[0]);
 		else if (stat(command[0], &st) != 0)
 		{
-			full_path = path_searcher(command, envariable);
+			full_path = path_searcher(command, en_variable);
 			if (full_path == NULL)
 				status = errno_found(argv[0], counter, command[0]);
 			else if (stat(full_path, &st) == 0 && access(full_path, X_OK) != 0)
