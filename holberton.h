@@ -15,7 +15,7 @@
 /*Structure definition*/
 /**
  * struct path_dir - singly linked list
- * @direct: string with whole folder
+ * @str: string with whole folder
  * @len: length of the string
  * @next: points to the next node
  *
@@ -28,6 +28,28 @@ typedef struct path_dir
 	unsigned int len;
 	struct path_dir *next;
 } path_dir_node;
+
+/**
+ * struct creator_params - singly linked list
+ * @line: pointer that stores what the user writes
+ * @counter: counter of shell, shows error in the lines
+ * @en_variable: path of the enviroment variable
+ * @argv: Entry to program arguments
+ * @start: Indicates to continue prompt cycle
+ * @status: Returns the number of executing code of every process
+ *
+ * Description: This structure give us input arguments
+ * to create processes - for Holberton project
+ */
+typedef struct creator_params
+{
+	char **line;
+	int *counter;
+	char *en_variable;
+	char **argv;
+	char *start;
+	int *status;
+} creator_args;
 
 /* Space for function prototypes*/
 int _putchar(char c);
@@ -50,9 +72,8 @@ char *path_searcher(char **command, char *env);
 char *_getenv(const char *name);
 void free_list(path_dir_node *head);
 size_t print_list(const path_dir_node *h);
-void put_node(path_dir_node **head, path_dir_node *new_node, path_dir_node *old_clone);
 char *get_match(const path_dir_node *h);
-int create_process(char *line, int counter, char *envariable, char *argv[], char *start, int *status);
+int create_process(creator_args param);
 /*space for extern variables*/
 extern char **environ;
 #endif
