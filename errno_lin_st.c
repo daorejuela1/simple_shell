@@ -30,6 +30,7 @@ exit(127);
  * @name: the name of shell or sh
  * @line: number of lines
  * @error: pointer to error messages
+ * Return: status code 126
  */
 int errno_per(char *name, int line, char *error)
 {
