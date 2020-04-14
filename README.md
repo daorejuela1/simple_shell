@@ -1,7 +1,7 @@
 
 #  0x16. C - Simple Shell
 
-https://ibb.co/hYpGY6h"><img src="https://i.ibb.co/LN4TNFb/Shell.png" alt="Shell" border="0
+https://i.ibb.co/LN4TNFb/Shell.png
 
 ###  Who designed and Implemented original Unix operation system?
 
@@ -35,11 +35,11 @@ Actually, every process comes with an environment. When a new process is created
 
 The main difference  between system call and function call is that a  **system call is a request for the kernel to access a resource while a function call is a request made by a program to perform a specific task.**
 
-![Difference Between System Call and Function Call - Comparison Summary](https://pediaa.com/wp-content/uploads/2019/05/Difference-Between-System-Call-and-Function-Call-Comparison-Summary_1.jpg)
+https://pediaa.com/wp-content/uploads/2019/05/Difference-Between-System-Call-and-Function-Call-Comparison-Summary_1.jpg
 
 ###   How to create processes
 
-https://ibb.co/Ry1yNbS"><img src="https://i.ibb.co/0tktK2X/child-process.png" alt="child-process" border="0
+https://ibb.co/Ry1yNbS"><img src="https://i.ibb.co/0tktK2X/child-process.png
  
 The system call `fork` creates a new child process, almost identical to the parent (the process that calls `fork`). Once `fork` successfully returns, two processes continue to run the same program, but with different stacks, datas and heaps.
 
@@ -47,7 +47,7 @@ Using the return value of `fork`, it is possible to know if the current process 
 
 
 
-https://ibb.co/Gn3KCYp"><img src="https://i.ibb.co/n68HQdm/pipeline.png" alt="pipeline" border=0
+https://ibb.co/Gn3KCYp"><img src="https://i.ibb.co/n68HQdm/pipeline.png
 
 
 Shell commands have a very specific purpose. More complicated commands can be constructed by combining simpler commands in a  pipeline (|),  so the output of one command becomes the input to another command. The standard shell syntax for pipelines(|) is to list multiple commands. 
