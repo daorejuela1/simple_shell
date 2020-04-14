@@ -7,49 +7,61 @@
  */
 char *_getenv(const char *name)
 {
-	extern char **environ;
-	char *key = NULL;
+	char *key = NULL, *copy = NULL;
+	char *result = NULL;
 	int i;
 
 	for (i = 0; environ[i] != NULL; i++)
 	{
-		key = strtok(environ[i], "=");
-		if (strcmp(key, name) == 0)
+		copy = _calloc(_strlen(environ[i]) + 1, 1);
+		if (copy == NULL)
+			return (NULL);
+		_strncpy(copy, environ[i], _strlen(environ[i]));
+		key = strtok(copy, "=");
+		if (_strcmp(key, (char *)name) == 0)
 		{
 			key = strtok(NULL, "=");
-			return (key);
+			result = _calloc(_strlen(key) + 1, 1);
+			_strncpy(result, key, _strlen(key));
+			free(copy);
+			return (result);
 		}
+		free(copy);
 	}
+	free(copy);
 	return (NULL);
 }
 /**
  *path_searcher - search through path for a valid file
  *@command: argument to check if exist or not
+ *@env: actual environment
  *Return: modified path or null if failed
  */
-char **path_searcher(char **command, int *data_length, char *env)
+char *path_searcher(char **command, char *env)
 {
 	char *token = NULL, *copy;
-	char **full_path = NULL, *final_path = NULL;
+	char *final_path = NULL;
 	struct stat st;
 
 	copy = _calloc(_strlen(env) + 1, 1);
 	_strncpy(copy, env, _strlen(env));
 	token = strtok(copy, ":");
-	while(token != NULL)
+	while (token != NULL)
 	{
-		final_path = _calloc(_strlen(token) + 1, 1);
+		final_path = _calloc(_strlen(token) + _strlen(command[0]) + 2, 1);
 		_strncpy(final_path, token, _strlen(token));
-		strcat(final_path, "/" );
-		strcat(final_path, command[0]);
+		_strcat(final_path, "/");
+		_strcat(final_path, command[0]);
 		if (stat(final_path, &st) == 0)
 		{
-			printf("%s\n %d", final_path, *data_length);
-			return (full_path);   
+			free(copy);
+			return (final_path);
 		}
 		token = strtok(NULL, ":");
+		free(final_path);
 	}
-	return (full_path);  
+	free(copy);
+	return (NULL);
 }
 
 

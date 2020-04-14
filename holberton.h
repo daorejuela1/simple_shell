@@ -32,7 +32,7 @@ typedef struct path_dir
 /* Space for function prototypes*/
 int _putchar(char c);
 int _puts(char *s);
-int process_selector(char **command, int *status);
+int process_selector(char *filename, char **command, int *status);
 void free_grid(char **grid, int height);
 char **extract_string(char *string, int *data_length);
 void *_calloc(unsigned int nmemb, unsigned int size);
@@ -46,12 +46,13 @@ unsigned int cal_digits(unsigned int n);
 void errno_lin_st(char *name, char *error);
 int errno_per(char *name, int line, char *error);
 int errno_found(char *name, int line, char *error);
-char **path_searcher(char **command, int *data_length, char *env);
+char *path_searcher(char **command, char *env);
 char *_getenv(const char *name);
 void free_list(path_dir_node *head);
 size_t print_list(const path_dir_node *h);
 void put_node(path_dir_node **head, path_dir_node *new_node, path_dir_node *old_clone);
 char *get_match(const path_dir_node *h);
+int create_process(char *line, int counter, char *envariable, char *argv[]);
 /*space for extern variables*/
 extern char **environ;
 #endif

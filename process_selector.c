@@ -1,12 +1,13 @@
 #include "holberton.h"
 /**
  * process_selector - function that selects the children processes
+ * @filename: executable name of file
  * @command: buffer variable where data is stored temporarily
  * @status: returns children running status
  * Return: Always 0 on success
 */
 
-int process_selector(char **command, int *status)
+int process_selector(char *filename, char **command, int *status)
 {
 	pid_t children;
 
@@ -18,7 +19,7 @@ int process_selector(char **command, int *status)
 	}
 	if (children == 0) /*Children process*/
 	{
-		if (execve(command[0], command, environ) == -1)
+		if (execve(filename, command, environ) == -1)
 		{
 			exit(2);
 		}
@@ -26,7 +27,7 @@ int process_selector(char **command, int *status)
 	if (children > 0) /*current process*/
 	{
 		wait(status);
-		*status = WEXITSTATUS(*status);;
+		*status = WEXITSTATUS(*status);
 	}
 return (0);
 }
