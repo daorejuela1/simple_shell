@@ -10,6 +10,7 @@ int main(int argc, char *argv[])
 {
 	int read, status = 0, data_length = 0, counter = 0;
 	char interactive = 0, *line = NULL, **command = NULL;
+	char *variable, **full_path = NULL;
 	struct stat st;
 	size_t len = 0;
 
@@ -17,6 +18,7 @@ int main(int argc, char *argv[])
 	{
 		errno_lin_st(argv[0], argv[1]);
 	}
+	variable = _getenv("PATH");
 	if (isatty(fileno(stdin)))
 		interactive = 1;
 	else
@@ -37,8 +39,18 @@ int main(int argc, char *argv[])
 			{
 			if (stat(command[0], &st) == 0 && access(command[0], X_OK) == 0)
 				process_selector(command, &status);
-			else
-				status = errno_found(argv[0], counter, command[0]);
+			else if (stat(command[0], &st) == 0 && access(command[0], X_OK) != 0)
+				status = errno_per(argv[0], counter, command[0]);
+			else if (stat(command[0], &st) != 0)
+			{
+				full_path = path_searcher(command, &data_length, variable);
+				if (full_path == NULL)
+					status = errno_found(argv[0], counter, command[0]);
+				else if (stat(full_path[0], &st) == 0 && access(full_path[0], X_OK) != 0)
+					status = errno_per(argv[0], counter, command[0]);
+				else if (stat(full_path[0], &st) == 0 && access(full_path[0], X_OK) == 0)
+					process_selector(full_path, &status);
+			}
 			free_grid(command, data_length);
 			data_length = 0;
 			if (interactive == 0)

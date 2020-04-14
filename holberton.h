@@ -12,6 +12,23 @@
 #include <fcntl.h>
 #include <errno.h>
 
+/*Structure definition*/
+/**
+ * struct path_dir - singly linked list
+ * @direct: string with whole folder
+ * @len: length of the string
+ * @next: points to the next node
+ *
+ * Description: singly linked list node structure
+ * for Holberton project
+ */
+typedef struct path_dir
+{
+	char *str;
+	unsigned int len;
+	struct path_dir *next;
+} path_dir_node;
+
 /* Space for function prototypes*/
 int _putchar(char c);
 int _puts(char *s);
@@ -27,8 +44,14 @@ char *_strcat(char *dest, char *src);
 char *c_number_to_arr(char *array_data, int n);
 unsigned int cal_digits(unsigned int n);
 void errno_lin_st(char *name, char *error);
-void errno_per(char *name, int line, char *error);
+int errno_per(char *name, int line, char *error);
 int errno_found(char *name, int line, char *error);
+char **path_searcher(char **command, int *data_length, char *env);
+char *_getenv(const char *name);
+void free_list(path_dir_node *head);
+size_t print_list(const path_dir_node *h);
+void put_node(path_dir_node **head, path_dir_node *new_node, path_dir_node *old_clone);
+char *get_match(const path_dir_node *h);
 /*space for extern variables*/
 extern char **environ;
 #endif

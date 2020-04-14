@@ -39,7 +39,7 @@ char **extract_string(char *string, int *data_length)
 		token = strtok(NULL, delim);
 	}
 	free(copy);
-	command = calloc(((*data_length) + 1), sizeof(char *));
+	command = _calloc(((*data_length) + 1), sizeof(char *));
 	if ((command) == NULL)
 		return (NULL);
 	copy2 = calloc(_strlen(string) + 1, 1);
@@ -50,7 +50,7 @@ char **extract_string(char *string, int *data_length)
 	token = strtok(copy2, delim);
 	for (i = 0; i < (*data_length); i++)
 	{
-		command[i] = calloc(strlen(token) + 1, 1);
+		command[i] = _calloc(strlen(token) + 1, 1);
 		if (command[i] == NULL)
 		{
 			free_grid(command, i);
