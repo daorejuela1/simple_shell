@@ -20,7 +20,11 @@ char *_getenv(const char *name)
 		if (_strcmp(key, (char *)name) == 0)
 		{
 			key = strtok(NULL, "=");
+			if (key == NULL)
+				key = "";
 			result = _calloc(_strlen(key) + 1, 1);
+			if (result == NULL)
+				return (NULL);
 			_strncpy(result, key, _strlen(key));
 			free(copy);
 			return (result);
