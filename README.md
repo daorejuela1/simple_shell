@@ -1,7 +1,7 @@
 
 #  0x16. C - Simple Shell
 
-https://i.ibb.co/LN4TNFb/Shell.png
+![Shell](https://i.ibb.co/LN4TNFb/Shell.png)
 
 ###  Who designed and Implemented original Unix operation system?
 
@@ -10,7 +10,7 @@ https://i.ibb.co/LN4TNFb/Shell.png
 The development began in 1969 and published internally in November 1971 and then announced to the world in October 1973 by Bell Labs.
 
 ### Who wrote the first version of the UNIX shell
-The first Unix shell was the sh, written by Ken Thompson (https://en.wikipedia.org/wiki/Ken_Thompson_(computer_programmer) "Ken Thompson (computer programmer)") at [Bell Labs](https://en.wikipedia.org/wiki/Bell_Labs) and distributed with Versions 1 through 6 of Unix, from 1971 to 1975. Tough rudimentary by modern standards, it introduced many of the basic features common to all later Unix shells, including piping, simple control structures using `if` and `goto`, and filename wildcarding. Though not in current use, it is still available as part of some [Ancient UNIX Systems] ("Ancient UNIX Systems").
+The first Unix shell was the sh, written by Ken Thompson computer programmer at [Bell Labs](https://en.wikipedia.org/wiki/Bell_Labs) and distributed with Versions 1 through 6 of Unix, from 1971 to 1975. Tough rudimentary by modern standards, it introduced many of the basic features common to all later Unix shells, including piping, simple control structures using `if` and `goto`, and filename wildcarding. Though not in current use, it is still available as part of some [Ancient UNIX Systems] ("Ancient UNIX Systems").
 
 ### Who invented the B programming language (the direct predecessor to the C programming language)
 
@@ -18,7 +18,7 @@ Kenneth Lane Thompson is an American pioneer of computer science. He worked at B
 
 ### What is a pid and a ppid
 
-https://delightlylinux.files.wordpress.com/2012/06/pid.png
+![PID-PPID](https://delightlylinux.files.wordpress.com/2012/06/pid.png)
 
 ### How to manipulate the environment of the current process`
 
@@ -35,11 +35,11 @@ Actually, every process comes with an environment. When a new process is created
 
 The main difference  between system call and function call is that a  **system call is a request for the kernel to access a resource while a function call is a request made by a program to perform a specific task.**
 
-https://pediaa.com/wp-content/uploads/2019/05/Difference-Between-System-Call-and-Function-Call-Comparison-Summary_1.jpg
+![SYSTEM-FUNCTION-CALL](https://pediaa.com/wp-content/uploads/2019/05/Difference-Between-System-Call-and-Function-Call-Comparison-Summary_1.jpg)
 
 ###   How to create processes
 
-https://ibb.co/Ry1yNbS"><img src="https://i.ibb.co/0tktK2X/child-process.png
+![CHILD-PROCESS](https://ibb.co/Ry1yNbS"><img src="https://i.ibb.co/0tktK2X/child-process.png)
  
 The system call `fork` creates a new child process, almost identical to the parent (the process that calls `fork`). Once `fork` successfully returns, two processes continue to run the same program, but with different stacks, datas and heaps.
 
@@ -47,7 +47,7 @@ Using the return value of `fork`, it is possible to know if the current process 
 
 
 
-https://ibb.co/Gn3KCYp"><img src="https://i.ibb.co/n68HQdm/pipeline.png
+![PIPELINE](https://ibb.co/Gn3KCYp"><img src="https://i.ibb.co/n68HQdm/pipeline.png)
 
 
 Shell commands have a very specific purpose. More complicated commands can be constructed by combining simpler commands in a  pipeline (|),  so the output of one command becomes the input to another command. The standard shell syntax for pipelines(|) is to list multiple commands. 
