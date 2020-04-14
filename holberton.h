@@ -70,7 +70,6 @@ int errno_per(char *name, int line, char *error);
 int errno_found(char *name, int line, char *error);
 char *path_searcher(char **command, char *env);
 char *_getenv(const char *name);
-void free_list(p_node *head);
 char *get_match(const p_node *h);
 int create_process(creator_args param);
 /*space for extern variables*/
