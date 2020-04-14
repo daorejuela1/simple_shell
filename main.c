@@ -29,7 +29,7 @@ int main(int argc, char *argv[])
 			_puts("$ ");
 			read =  getline(&line, &len, stdin);
 			counter++;
-			if (read == -1)
+			if (read == EOF)
 			{
 				_puts("\n");
 				break;
@@ -39,7 +39,7 @@ int main(int argc, char *argv[])
 	}
 	else
 	{
-		while ((read = getline(&line, &len, stdin)) != -1)
+		while ((read = getline(&line, &len, stdin)) != EOF)
 		{
 			counter++; /*non interactive mode*/
 			status = create_process(creator_params);

@@ -28,7 +28,7 @@ char **extract_string(char *string, int *data_length)
 	const char *delim = " \n\t\r";
 	char **command = NULL;
 
-	copy = calloc(_strlen(string) + 1, 1);
+	copy = _calloc(_strlen(string) + 1, 1);
 	if (copy == NULL)
 		return (NULL);
 	_strncpy(copy, string, _strlen(string));
@@ -42,7 +42,7 @@ char **extract_string(char *string, int *data_length)
 	command = _calloc(((*data_length) + 1), sizeof(char *));
 	if ((command) == NULL)
 		return (NULL);
-	copy2 = calloc(_strlen(string) + 1, 1);
+	copy2 = _calloc(_strlen(string) + 1, 1);
 	if (copy2 == NULL)
 		return (NULL);
 
