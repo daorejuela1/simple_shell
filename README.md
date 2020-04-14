@@ -39,7 +39,7 @@ The main difference  between system call and function call is that a  **system c
 
 ###   How to create processes
 
-![CHILD-PROCESS](https://ibb.co/Ry1yNbS"><img src="https://i.ibb.co/0tktK2X/child-process.png)
+![CHILD-PROCESS](https://i.ibb.co/0tktK2X/child-process.png)
  
 The system call `fork` creates a new child process, almost identical to the parent (the process that calls `fork`). Once `fork` successfully returns, two processes continue to run the same program, but with different stacks, datas and heaps.
 
@@ -47,7 +47,7 @@ Using the return value of `fork`, it is possible to know if the current process 
 
 
 
-![PIPELINE](https://ibb.co/Gn3KCYp"><img src="https://i.ibb.co/n68HQdm/pipeline.png)
+![PIPELINE](https://i.ibb.co/n68HQdm/pipeline.png)
 
 
 Shell commands have a very specific purpose. More complicated commands can be constructed by combining simpler commands in a  pipeline (|),  so the output of one command becomes the input to another command. The standard shell syntax for pipelines(|) is to list multiple commands. 
