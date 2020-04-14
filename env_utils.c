@@ -73,7 +73,7 @@ char *path_searcher(char **command, char *env)
  *@h: list to iterate over
  *Return: Matching path or null
  */
-char *get_match(const path_dir_node *h)
+char *get_match(const p_node *h)
 {
 	int i = 0;
 	struct stat st;

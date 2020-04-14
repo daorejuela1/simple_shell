@@ -27,7 +27,7 @@ typedef struct path_dir
 	char *str;
 	unsigned int len;
 	struct path_dir *next;
-} path_dir_node;
+} p_node;
 
 /**
  * struct creator_params - singly linked list
@@ -39,7 +39,7 @@ typedef struct path_dir
  * @status: Returns the number of executing code of every process
  *
  * Description: This structure give us input arguments
- * to create processes - for Holberton project
+ * to create processes - for Holberton projectpu
  */
 typedef struct creator_params
 {
@@ -70,9 +70,9 @@ int errno_per(char *name, int line, char *error);
 int errno_found(char *name, int line, char *error);
 char *path_searcher(char **command, char *env);
 char *_getenv(const char *name);
-void free_list(path_dir_node *head);
-size_t print_list(const path_dir_node *h);
-char *get_match(const path_dir_node *h);
+void free_list(p_node *head);
+size_t print_list(const p_node *h);
+char *get_match(const p_node *h);
 int create_process(creator_args param);
 /*space for extern variables*/
 extern char **environ;
