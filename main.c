@@ -9,7 +9,7 @@
 int main(int argc, char *argv[])
 {
 	int counter = 0, read = 0, status = 0;
-	char *en_variable = NULL;
+	char *en_variable = NULL, start = 1;
 	char *line = NULL;
 	size_t len = 0;
 
@@ -21,7 +21,7 @@ int main(int argc, char *argv[])
 	if (isatty(fileno(stdin)))
 	{
 		/*interactive mode*/
-		while (1)
+		while (start)
 		{
 			_puts("$ ");
 			read =  getline(&line, &len, stdin);
@@ -31,7 +31,7 @@ int main(int argc, char *argv[])
 				_puts("\n");
 				break;
 			}
-			status = create_process(line, counter, en_variable, argv);
+			status = create_process(line, counter, en_variable, argv, &start, &status);
 		}
 	}
 	else
@@ -40,7 +40,7 @@ int main(int argc, char *argv[])
 		while ((read = getline(&line, &len, stdin)) != -1)
 		{
 			counter++;
-			status = create_process(line, counter, en_variable, argv);
+			status = create_process(line, counter, en_variable, argv, &start, &status);
 		}
 	}
 	free(en_variable);

@@ -52,7 +52,7 @@ void free_list(path_dir_node *head);
 size_t print_list(const path_dir_node *h);
 void put_node(path_dir_node **head, path_dir_node *new_node, path_dir_node *old_clone);
 char *get_match(const path_dir_node *h);
-int create_process(char *line, int counter, char *envariable, char *argv[]);
+int create_process(char *line, int counter, char *envariable, char *argv[], char *start, int *status);
 /*space for extern variables*/
 extern char **environ;
 #endif
