@@ -107,11 +107,14 @@ void print_env(void)
 {
 	unsigned int i = 0;
 
-	while (environ[i] != NULL)
+	if (environ)
 	{
-		_puts(environ[i]);
-		_puts("\n");
-		i++;
+		while (environ[i] != NULL)
+		{
+			_puts(environ[i]);
+			_puts("\n");
+			i++;
+		}
 	}
 }
 
