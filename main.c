@@ -4,9 +4,10 @@
  * main - reads the user input and checks if is valid
  *@argc: quantity of arguments
  *@argv: value of the arguments
+ *@env: enviroment variable
  *Return: Always 0
  */
-int main(int argc, char *argv[])
+int main(int argc, char *argv[], char **env)
 {
 	int counter = 0, read = 0, status = 0;
 	char *en_variable = NULL, start = 1, *line = NULL;
@@ -32,9 +33,9 @@ int main(int argc, char *argv[])
 				break;
 			}
 			else if (_strcmp(line, "env\n") == 0)
-				print_env();
+				print_env(env);
 			else
-				status = create_pro(c_args);
+				status = new_pro(c_args);
 		}
 	}
 	else
@@ -42,7 +43,7 @@ int main(int argc, char *argv[])
 		while ((read = getline(&line, &len, stdin)) != EOF)
 		{
 			counter++; /*non interactive mode*/
-			status = (_strcmp(line, "env\n") == 0) ? print_env() : create_pro(c_args);
+			status = (_strcmp(line, "env\n") == 0) ? print_env(env) : new_pro(c_args);
 		}
 	}
 	free(en_variable);

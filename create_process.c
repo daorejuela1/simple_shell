@@ -1,11 +1,11 @@
 #include "holberton.h"
 /**
- *create_pro - executes the shell main logic checking
+ *new_pro - executes the shell main logic checking
  *if a file is worth
  *@param: structure with all arguments
  *Return: modified path or null if failed
  */
-int create_pro(creator_args param)
+int new_pro(creator_args param)
 {
 	int data_length = 0;
 	char **command = NULL;

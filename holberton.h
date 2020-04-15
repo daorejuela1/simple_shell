@@ -70,9 +70,9 @@ int errno_per(char *name, int line, char *error);
 int errno_found(char *name, int line, char *error);
 char *path_searcher(char **command, char *env);
 char *_getenv(const char *name);
-int create_pro(creator_args param);
+int new_pro(creator_args param);
 int _atoi(char *s);
-int print_env(void);
+int print_env(char **env);
 void handler_ctrlc(int sig);
 /*space for extern variables*/
 extern char **environ;
