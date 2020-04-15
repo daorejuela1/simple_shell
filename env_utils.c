@@ -101,18 +101,17 @@ int _atoi(char *s)
 
 /**
 *print_env - prints the environ variable
-*@env: actual environment
 *Return: Nothing
 */
-void print_env(char **env)
+void print_env(void)
 {
 	unsigned int i = 0;
 
-	if (env)
+	if (environ)
 	{
-		while (env[i] != NULL)
+		while (environ[i] != NULL)
 		{
-			_puts(env[i]);
+			_puts(environ[i]);
 			_puts("\n");
 			i++;
 		}
