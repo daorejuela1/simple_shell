@@ -31,7 +31,7 @@ int create_process(creator_args param)
 			*(param.status) = errno_per(param.argv[0], *(param.counter), command[0]);
 		else if (stat(command[0], &st) != 0)
 		{
-			full_path = path_searcher(command, *(param.en_variable));
+			full_path = path_searcher(command, param.en_variable);
 			if (full_path == NULL)
 				*(param.status) = errno_found(param.argv[0], *(param.counter), command[0]);
 			else if (stat(full_path, &st) == 0 && access(full_path, X_OK) != 0)

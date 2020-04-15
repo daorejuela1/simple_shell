@@ -14,7 +14,8 @@ int main(int argc, char *argv[])
 	creator_args creator_params;
 
 	signal(SIGINT, handler_ctrlc);
-	creator_params.line = &line, creator_params.en_variable = &en_variable;
+	en_variable = _getenv("PATH");
+	creator_params.line = &line, creator_params.en_variable = en_variable;
 	creator_params.argv = argv, creator_params.counter = &counter;
 	creator_params.start = &start, creator_params.status = &status;
 	if (argc > 1)
@@ -23,7 +24,6 @@ int main(int argc, char *argv[])
 	{
 		while (start) /*interactive mode*/
 		{
-			en_variable = _getenv("PATH");
 			_puts("$ ");
 			read =  getline(&line, &len, stdin);
 			counter++;
@@ -39,7 +39,6 @@ int main(int argc, char *argv[])
 	{
 		while ((read = getline(&line, &len, stdin)) != EOF)
 		{
-			en_variable = _getenv("PATH");
 			counter++; /*non interactive mode*/
 			status = create_process(creator_params);
 		}
