@@ -66,23 +66,3 @@ char *path_searcher(char **command, char *env)
 	free(copy);
 	return (NULL);
 }
-
-
-/**
- *get_match - ask if current path exist
- *@h: list to iterate over
- *Return: Matching path or null
- */
-char *get_match(const p_node *h)
-{
-	int i = 0;
-	struct stat st;
-
-	for (i = 0; h != NULL; i++)
-	{
-		if (stat(h->str, &st) == 0)
-			return (h->str);
-		h = h->next;
-	}
-	return (NULL);
-}

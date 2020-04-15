@@ -1,30 +1,24 @@
 #include "holberton.h"
 /**
-  *_strcmp - merge  two strings
-  *
-  *@s1: second string
-  *@s2: first string
-  *
-  *Return: number with difference
-  */
-int _strcmp(char *s1, char *s2)
+ * _strcmp - compares strings
+ * @s1: string to compare
+ * @s2: string to compare
+ * Return: Always 0 on success
+ */
+int _strcmp(char *p1, char *p2)
 {
-	int i;
-	int differ;
-
-	for (i = 0; s1[i] != 0; i++)
+const unsigned char *s1 = (const unsigned char *) p1;
+const unsigned char *s2 = (const unsigned char *) p2;
+unsigned char c1, c2;
+do
 	{
-		differ = *(s1 + i) - *(s2 + i);
-		if (*(s1 + i) == *(s2 + i))
-		{
-			continue;
-		}
-		else
-		{
-			break;
-		}
+	c1 = (unsigned char) *s1++;
+	c2 = (unsigned char) *s2++;
+	if (c1 == '\0')
+		return c1 - c2;
 	}
-	return (differ);
+while (c1 == c2);
+return c1 - c2;
 }
 
 /**

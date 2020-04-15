@@ -59,7 +59,7 @@ void free_grid(char **grid, int height);
 char **extract_string(char *string, int *data_length);
 void *_calloc(unsigned int nmemb, unsigned int size);
 char *_memset(char *s, char b, unsigned int n);
-int _strcmp(char *s1, char *s2);
+int _strcmp(char *p1, char *p2);
 char *_strncpy(char *dest, char *src, int n);
 int _strlen(char *s);
 char *_strcat(char *dest, char *src);
@@ -70,7 +70,6 @@ int errno_per(char *name, int line, char *error);
 int errno_found(char *name, int line, char *error);
 char *path_searcher(char **command, char *env);
 char *_getenv(const char *name);
-char *get_match(const p_node *h);
 int create_process(creator_args param);
 /*space for extern variables*/
 extern char **environ;

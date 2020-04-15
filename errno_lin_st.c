@@ -12,7 +12,6 @@ int data_len = 0;
 char *message = ": 0: Can't open ";
 
 data_len = _strlen(name) + _strlen(error) + _strlen(message);
-errno = -1;
 err_message = _calloc(data_len + 2, 1);
 if (err_message == NULL)
 	return;

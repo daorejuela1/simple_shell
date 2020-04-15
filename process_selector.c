@@ -1,4 +1,5 @@
 #include "holberton.h"
+#define CHILDSTATUS(x)	(x >> 8)
 /**
  * process_selector - function that selects the children processes
  * @filename: executable name of file
@@ -27,7 +28,7 @@ int process_selector(char *filename, char **command, int *status)
 	if (children > 0) /*current process*/
 	{
 		wait(status);
-		*status = WEXITSTATUS(*status);
+		*status = CHILDSTATUS(*status);
 	}
 return (0);
 }

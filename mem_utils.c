@@ -25,7 +25,7 @@ char **extract_string(char *string, int *data_length)
 {
 	int i = 0;
 	char *copy, *token, *copy2;
-	const char *delim = " \n\t\r\a";
+	const char *delim = " \n\v\t\r\a\"";
 	char **command = NULL;
 
 	copy = _calloc(_strlen(string) + 1, 1);

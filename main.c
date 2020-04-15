@@ -22,7 +22,7 @@ int main(int argc, char *argv[])
 	creator_params.status = &status;
 	if (argc > 1)
 		errno_lin_st(argv[0], argv[1]);
-	if (isatty(fileno(stdin)))
+	if (isatty(STDIN_FILENO))
 	{
 		while (start) /*interactive mode*/
 		{
@@ -42,8 +42,8 @@ int main(int argc, char *argv[])
 		while ((read = getline(&line, &len, stdin)) != EOF)
 		{
 			counter++; /*non interactive mode*/
+			status = create_process(creator_params);
 		}
-		status = create_process(creator_params);
 	}
 	free(en_variable);
 	free(line);
