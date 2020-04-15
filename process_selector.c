@@ -12,6 +12,11 @@ int process_selector(char *filename, char **command, int *status)
 {
 	pid_t children;
 
+	if (_strcmp(filename, "env") == 0)
+	{
+		print_env();
+		return (0);
+	}
 	children = fork();
 	if (children < 0) /*Error*/
 	{

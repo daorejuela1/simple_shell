@@ -23,8 +23,6 @@ int create_process(creator_args param)
 			free_grid(command, data_length);
 			return (*(param.status));
 		}
-		else if (_strcmp(command[0], "env") == 0)
-			print_env();
 		else if (stat(command[0], &st) == 0 && access(command[0], X_OK) == 0)
 			process_selector(command[0], command, param.status);
 		else if (stat(command[0], &st) == 0 && access(command[0], X_OK) != 0)
