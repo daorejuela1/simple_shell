@@ -101,9 +101,9 @@ int _atoi(char *s)
 
 /**
 *print_env - prints the environ variable
-*Return: Nothing
+*Return: Always 0
 */
-void print_env(void)
+int print_env(void)
 {
 	unsigned int i = 0;
 
@@ -116,6 +116,7 @@ void print_env(void)
 			i++;
 		}
 	}
+	return (0);
 }
 
 /**

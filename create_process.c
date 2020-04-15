@@ -1,11 +1,11 @@
 #include "holberton.h"
 /**
- *create_process - executes the shell main logic checking
+ *create_pro - executes the shell main logic checking
  *if a file is worth
  *@param: structure with all arguments
  *Return: modified path or null if failed
  */
-int create_process(creator_args param)
+int create_pro(creator_args param)
 {
 	int data_length = 0;
 	char **command = NULL;
@@ -23,8 +23,6 @@ int create_process(creator_args param)
 			free_grid(command, data_length);
 			return (*(param.status));
 		}
-		else if (_strcmp(command[0], "env") == 0)
-			print_env();
 		else if (stat(command[0], &st) == 0 && access(command[0], X_OK) == 0)
 			process_selector(command[0], command, param.status);
 		else if (stat(command[0], &st) == 0 && access(command[0], X_OK) != 0)

@@ -11,13 +11,12 @@ int main(int argc, char *argv[])
 	int counter = 0, read = 0, status = 0;
 	char *en_variable = NULL, start = 1, *line = NULL;
 	size_t len = 0;
-	creator_args creator_params;
+	creator_args c_args;
 
 	signal(SIGINT, handler_ctrlc);
 	en_variable = _getenv("PATH");
-	creator_params.line = &line, creator_params.en_variable = en_variable;
-	creator_params.argv = argv, creator_params.counter = &counter;
-	creator_params.start = &start, creator_params.status = &status;
+	c_args.line = &line, c_args.en_variable = en_variable, c_args.argv = argv;
+	c_args.counter = &counter, c_args.start = &start, c_args.status = &status;
 	if (argc > 1)
 		errno_lin_st(argv[0], argv[1]);
 	if (isatty(STDIN_FILENO))
@@ -32,7 +31,10 @@ int main(int argc, char *argv[])
 				_puts("\n");
 				break;
 			}
-			status = create_process(creator_params);
+			else if (_strcmp(line, "env\n") == 0)
+				print_env();
+			else
+				status = create_pro(c_args);
 		}
 	}
 	else
@@ -40,7 +42,7 @@ int main(int argc, char *argv[])
 		while ((read = getline(&line, &len, stdin)) != EOF)
 		{
 			counter++; /*non interactive mode*/
-			status = create_process(creator_params);
+			status = (_strcmp(line, "env\n") == 0) ? print_env() : create_pro(c_args);
 		}
 	}
 	free(en_variable);
