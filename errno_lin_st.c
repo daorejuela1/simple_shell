@@ -100,3 +100,43 @@ free(storage_array);
 return (127);
 }
 
+/**
+ * errno_int - prints error depending on the case
+ * @name: pointer to a string of error messages
+ * @line: number of lines
+ * @error: pointer to error
+ * @code: code that rise the error
+ * Return: error code 2
+ */
+int errno_int(char *name, int line, char *error, char *code)
+{
+char *err_message, *storage_array;
+int data_len = 0, num_digits = 0, position = 0;
+char *message = ": Illegal number: ";
+
+num_digits = line;
+while (num_digits != 0)
+{
+	num_digits = num_digits / 10;
+	position++;
+}
+data_len = _strlen(name) + _strlen(error) + _strlen(message);
+err_message = _calloc(data_len + 6 + position + _strlen(code), 1);
+if (err_message == NULL)
+	return (0);
+storage_array = _calloc(position + 1, 1);
+if (storage_array == NULL)
+	return (0);
+_strncpy(err_message, name, _strlen(name));
+_strcat(err_message, ": ");
+_strcat(err_message, c_number_to_arr(storage_array, line));
+_strcat(err_message, ": ");
+_strcat(err_message, error);
+_strcat(err_message, message);
+_strcat(err_message, code);
+_strcat(err_message, "\n");
+write(STDERR_FILENO, err_message, _strlen(err_message));
+free(err_message);
+free(storage_array);
+return (2);
+}

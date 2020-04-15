@@ -73,6 +73,9 @@ int new_pro(creator_args param);
 int _atoi(char *s);
 int print_env(char **env);
 void handler_ctrlc(int sig);
+int isNumber(char *s);
+int errno_int(char *name, int line, char *error, char *code);
+int handle_error(creator_args param, char **command, int *data_length);
 /*space for extern variables*/
 extern char **environ;
 #endif
