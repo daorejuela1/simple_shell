@@ -45,7 +45,6 @@ typedef struct creator_params
 {
 	char **line;
 	int *counter;
-	char *en_variable;
 	char **argv;
 	char *start;
 	int *status;

@@ -8,7 +8,7 @@
 int new_pro(creator_args param)
 {
 	int data_length = 0;
-	char **command = NULL;
+	char **command = NULL, *en_variable = NULL;
 	char *full_path = NULL;
 	struct stat st;
 
@@ -29,13 +29,15 @@ int new_pro(creator_args param)
 			*(param.status) = errno_per(param.argv[0], *(param.counter), command[0]);
 		else if (stat(command[0], &st) != 0)
 		{
-			full_path = path_searcher(command, param.en_variable);
+			en_variable = _getenv("PATH");
+			full_path = path_searcher(command, en_variable);
 			if (full_path == NULL)
 				*(param.status) = errno_found(param.argv[0], *(param.counter), command[0]);
 			else if (stat(full_path, &st) == 0 && access(full_path, X_OK) != 0)
 				*(param.status) = errno_per(param.argv[0], *(param.counter), command[0]);
 			else if (stat(full_path, &st) == 0 && access(full_path, X_OK) == 0)
 				process_selector(full_path, command, param.status);
+		free(en_variable);
 		free(full_path);
 		}
 		free_grid(command, data_length);

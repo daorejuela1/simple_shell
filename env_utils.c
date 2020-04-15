@@ -101,6 +101,7 @@ int _atoi(char *s)
 
 /**
 *print_env - prints the environ variable
+*@env: enviroment inpu
 *Return: Always 0
 */
 int print_env(char **env)
