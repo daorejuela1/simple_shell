@@ -58,3 +58,45 @@ When the shell runs commands forks  new processes using **exec**,  so  the new p
 `* int main(void)
 *  int main(int ac, char **av)`
 *  int main(int ac, char **av, char **env)
+
+### How does the shell use the  `PATH`  to find the programs
+
+
+There are two types of files those that just contain information and those  that are executable (files that are used to run functions and operations in the machine).
+The PATH variable is basically a list of directories that the computer search in to find an executable that has been requested.
+Any command name that is not built-in, is assumed to be the name of an executable program file, and the shell attempts to find an executable file with that name and runs it. (Shells find and run commands.)
+
+If the command name contains no slashes (like most command names, e.g.  `date`), the shell looks for the executable file with that exact name in the list of directories kept in the  `PATH`  environment variable. Because  `PATH`  is a shell environment variable, you can change the list, and the list is usually exported and inherited by child processes of the shell. Directories in  `PATH`  are separated by colons, e.g. the following  `PATH`  variable contains three directories separated by colons:
+
+```
+$ echo "$PATH"
+/usr/local/bin:/bin:/usr/bin
+```
+
+When typing a file with no slashes, shell goes looking for the `executable file in the list of directories kept in the  `PATH`  environment variable, looking for an executable file named to execute. The shell tries each directory in the  `PATH`, left-to-right, and runs the first executable program with the matching command name that it finds.
+
+The shell next tries the second directory name in the  `PATH`  variable (`/bin`) and looks for an executable file named  `/bin/ls`, and this is the usual location of the  ls.
+
+Since this file exists, the shell runs this executable program and ls appears
+
+The **slashes** in the pathname prevent the shell from using  `PATH`  to look up the command name, so the shell executes it  directly.
+
+
+###  How to execute another program with the  `execve`  system call
+
+The system call  `execve`  allows a process to execute another program. This system call loads the new program into the current process’ memory in place of the “previous” program: on success  `execve`  does not return to continue the rest of the “previous” program. The program invoked inherits the calling process’s PID, and any open file descriptors that are not set to close-on-exec. Signals pending on the calling process are cleared. Any signals set to be caught by the calling process are reset to their default behaviour. 
+
+### How to suspend the execution of a process until one of its children terminates
+
+A call to wait() blocks the calling process until one of its child processes exits or a signal is received. After child process terminates, the parent continues  its execution after wait system call instruction.  
+Child process may terminate due to any of these:
+
+-   It calls exit();
+-   It returns (an int) from main
+-   It receives a signal (from the OS or another process) whose default action is to terminate.
+
+###   What is  `EOF`  / “end-of-file”?
+
+It is an acronym for ‘End Of File’. It refers to a state that may occur while reading a file, or anything that can be read using the semantics of file IO, such as reading from devices or streams in Linux. The state can be represented in some cases by a value which equates to that state. There is a C function, `feof()`, whihc can be used to test whether reading from a stream has caused the EOF state to be reached. In certain cases, it is possible to generate an EOF state, such as by typing Ctrl-D to terminate standard input to a process, such as a shell.
+
+
