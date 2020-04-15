@@ -25,7 +25,7 @@ char **extract_string(char *string, int *data_length)
 {
 	int i = 0;
 	char *copy, *token, *copy2;
-	const char *delim = " \n\t\r";
+	const char *delim = " \n\t\r\a";
 	char **command = NULL;
 
 	copy = _calloc(_strlen(string) + 1, 1);
@@ -50,7 +50,7 @@ char **extract_string(char *string, int *data_length)
 	token = strtok(copy2, delim);
 	for (i = 0; i < (*data_length); i++)
 	{
-		command[i] = _calloc(strlen(token) + 1, 1);
+		command[i] = _calloc(_strlen(token) + 1, 1);
 		if (command[i] == NULL)
 		{
 			free_grid(command, i);

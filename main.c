@@ -42,8 +42,8 @@ int main(int argc, char *argv[])
 		while ((read = getline(&line, &len, stdin)) != EOF)
 		{
 			counter++; /*non interactive mode*/
-			status = create_process(creator_params);
 		}
+		status = create_process(creator_params);
 	}
 	free(en_variable);
 	free(line);
