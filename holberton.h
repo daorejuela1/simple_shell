@@ -37,7 +37,7 @@ typedef struct path_dir
  * @argv: Entry to program arguments
  * @start: Indicates to continue prompt cycle
  * @status: Returns the number of executing code of every process
- *
+ * @env: actual environment
  * Description: This structure give us input arguments
  * to create processes - for Holberton projectpu
  */
@@ -49,6 +49,7 @@ typedef struct creator_params
 	char **argv;
 	char *start;
 	int *status;
+	char **actual_env;
 } creator_args;
 
 /* Space for function prototypes*/
@@ -72,7 +73,7 @@ char *path_searcher(char **command, char *env);
 char *_getenv(const char *name);
 int create_process(creator_args param);
 int _atoi(char *s);
-void print_env(void);
+void print_env(char **env);
 void handler_ctrlc(int sig);
 /*space for extern variables*/
 extern char **environ;

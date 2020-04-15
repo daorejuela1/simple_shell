@@ -24,7 +24,7 @@ int create_process(creator_args param)
 			return (*(param.status));
 		}
 		else if (_strcmp(command[0], "env") == 0)
-			print_env();
+			print_env(param.actual_env);
 		else if (stat(command[0], &st) == 0 && access(command[0], X_OK) == 0)
 			process_selector(command[0], command, param.status);
 		else if (stat(command[0], &st) == 0 && access(command[0], X_OK) != 0)
