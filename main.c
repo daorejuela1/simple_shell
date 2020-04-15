@@ -13,13 +13,11 @@ int main(int argc, char *argv[])
 	size_t len = 0;
 	creator_args creator_params;
 
+	signal(SIGINT, handler_ctrlc);
 	en_variable = _getenv("PATH");
-	creator_params.line = &line;
-	creator_params.en_variable = en_variable;
-	creator_params.argv = argv;
-	creator_params.counter = &counter;
-	creator_params.start = &start;
-	creator_params.status = &status;
+	creator_params.line = &line, creator_params.en_variable = en_variable;
+	creator_params.argv = argv, creator_params.counter = &counter;
+	creator_params.start = &start, creator_params.status = &status;
 	if (argc > 1)
 		errno_lin_st(argv[0], argv[1]);
 	if (isatty(STDIN_FILENO))

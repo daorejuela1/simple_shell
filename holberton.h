@@ -71,6 +71,9 @@ int errno_found(char *name, int line, char *error);
 char *path_searcher(char **command, char *env);
 char *_getenv(const char *name);
 int create_process(creator_args param);
+int _atoi(char *s);
+void print_env(void);
+void handler_ctrlc(int sig);
 /*space for extern variables*/
 extern char **environ;
 #endif

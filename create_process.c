@@ -17,10 +17,14 @@ int create_process(creator_args param)
 		{
 		if (_strcmp(command[0], "exit") == 0)
 		{
-			free_grid(command, data_length);
 			*(param.start) = 0;
+			if (command[1] != NULL)
+				*(param.status) = _atoi(command[1]);
+			free_grid(command, data_length);
 			return (*(param.status));
 		}
+		else if (_strcmp(command[0], "env") == 0)
+			print_env();
 		else if (stat(command[0], &st) == 0 && access(command[0], X_OK) == 0)
 			process_selector(command[0], command, param.status);
 		else if (stat(command[0], &st) == 0 && access(command[0], X_OK) != 0)
