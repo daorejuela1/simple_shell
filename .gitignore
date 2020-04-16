@@ -6,4 +6,5 @@
 !.gitignore
 !AUTHORS
 !man_1_simple_shell
-!test
+!Example/test
+!LICENSE

@@ -1,79 +1,174 @@
-.\"Modified from man(1) of FreeBSD, the NetBSD mdoc.template, and mdoc.samples.
-.\"See Also:
-.\"man mdoc.samples for a complete listing of options
-.\"man mdoc for the short list of editing options
-.\"/usr/share/misc/mdoc.template
-.Dd 8/4/10               \" DATE
-.Dt Untitled 1      \" Program name and manual section number
-.Os Darwin
+.Dd 16/4/20               \" DATE
+.Dt ./hsh 1      \" Program name and manual section number
+.Os KC-DO
 .Sh NAME                 \" Section Header - required - don't modify
-.Nm Untitled,
-.\" The following lines are read in generating the apropos(man -k) database. Use only key
-.\" words here as the database is built based on the words here and in the .ND line.
-.Nm Other_name_for_same_program(),
-.Nm Yet another name for the same program.
+.Nm ./hsh,
 .\" Use .Nm macro to designate other names for the documented program.
-.Nd This line parsed for whatis database.
+.Nd Holberton Simple Shell a command language interpreter that executes commands that are read
+ from the standard input.
 .Sh SYNOPSIS             \" Section Header - required - don't modify
 .Nm
-.Op Fl abcd              \" [-abcd]
-.Op Fl a Ar path         \" [-a path]
-.Op Ar file              \" [file]
-.Op Ar                   \" [file ...]
-.Ar arg0                 \" Underlined argument - use .Ar anywhere to underline
-arg2 ...                 \" Arguments
+
+.P
+
+
+ ./hsh
+
+echo command | ./hsh
+
+cat file | ./hsh
+
 .Sh DESCRIPTION          \" Section Header - required - don't modify
-Use the .Nm macro to refer to your program throughout the man page like such:
+This manual page explains the
 .Nm
-Underlining is accomplished with the .Ar macro like this:
-.Ar underlined text .
-.Pp                      \" Inserts a space
-A list of items with descriptions:
-.Bl -tag -width -indent  \" Begins a tagged list
-.It item a               \" Each item preceded by .It macro
-Description of item a
-.It item b
-Description of item b
-.El                      \" Ends the list
-.Pp
-A list of flags and their descriptions:
-.Bl -tag -width -indent  \" Differs from above in tag removed
-.It Fl a                 \"-a flag as a list item
-Description of -a flag
-.It Fl b
-Description of -b flag
-.El                      \" Ends the list
-.Pp
-.\" .Sh ENVIRONMENT      \" May not be needed
-.\" .Bl -tag -width "ENV_VAR_1" -indent \" ENV_VAR_1 is width of the string ENV_VAR_1
-.\" .It Ev ENV_VAR_1
-.\" Description of ENV_VAR_1
-.\" .It Ev ENV_VAR_2
-.\" Description of ENV_VAR_2
-.\" .El
-.Sh FILES                \" File used or created by the topic of the man page
-.Bl -tag -width "/Users/joeuser/Library/really_long_file_name" -compact
-.It Pa /usr/share/file_name
-FILE_1 description
-.It Pa /Users/joeuser/Library/really_long_file_name
-FILE_2 description
-.El                      \" Ends the list
-.\" .Sh DIAGNOSTICS       \" May not be needed
-.\" .Bl -diag
-.\" .It Diagnostic Tag
-.\" Diagnostic informtion here.
-.\" .It Diagnostic Tag
-.\" Diagnostic informtion here.
-.\" .El
+work flow and implementation cases, this program will execute directly any other
+software that you want to execute in your system if it can find it directly, or
+in your PATH environment variable.
+
+
+Each input receive in interactive mode will increase the line counter, if a command
+can not be found or execute it will return the line counter, and the respective
+message inmediatly.
+
+
+.RI "Can also work in non-interactive mode" by sending data using the standard input.
+
+.Sh RETURN VALUE
+If you want to exit with an specific exit status you can use:
+Exit Status, in other case the system will return the following status:
+
+
+.B
+0:
+Everything ok - No error detected in the last command
+
+
+.B
+2:
+Misuse of shell builtins - Missing keyword or command, or permission problem
+
+
+.B
+126:
+Command invoked cannot execute - Permission problem or command is not an executable
+
+
+.B
+127:
+Command not found - Possible problem with $PATH or a typo
+
+.Sh Example
+
+~./hsh
+
+$ ls
+
+.ul
+create_process.c  holberton.h  main.c              my_cmd              _puts.c
+
+.ul
+AUTHORS         env_utils.c       hsh          man_1_simple_shell
+.ul
+process_selector.c  README.md    test_ls_2
+.ul
+built_interr.c  errno_lin_st.c    LICENSE      mem_utils.c         _putchar.c          str_utils.c
+
+
+$ /bin/ls
+
+.ul
+create_process.c  holberton.h  main.c              my_cmd              _puts.c
+
+.ul
+AUTHORS         env_utils.c       hsh          man_1_simple_shell
+.ul
+process_selector.c  README.md    test_ls_2
+.ul
+built_interr.c  errno_lin_st.c    LICENSE      mem_utils.c         _putchar.c          str_utils.c
+
+
+$ pwd
+
+.ul
+/home/vagrant/simple_shell
+
+
+$ env
+
+.ul
+LESSOPEN=| /usr/bin/lesspipe %s
+
+.ul
+XDG_RUNTIME_DIR=/run/user/1000
+
+.ul
+VERBOSE_LOGGING=true
+
+.ul
+LESSCLOSE=/usr/bin/lesspipe %s %s
+
+.ul
+COLORTERM=truecolor
+
+.ul
+_=/usr/bin/env
+
+.ul
+OLDPWD=/home/vagrant
+
+
+$ exit 25
+
+~$?
+
+.ul
+25: command not found
+
+
+~ echo "ls" | ./hsh
+
+.ul
+create_process.c  holberton.h  main.c              my_cmd              _puts.c
+
+.ul
+AUTHORS         env_utils.c       hsh          man_1_simple_shell
+.ul
+process_selector.c  README.md    test_ls_2
+.ul
+built_interr.c  errno_lin_st.c    LICENSE      mem_utils.c         _putchar.c          str_utils.c
+
+
+~ echo "pwd" | ./hsh
+
+.ul
+/home/vagrant/simple_shell
+
+
+~ echo "/bin/ls" | ./hsh
+
+.ul
+create_process.c  holberton.h  main.c              my_cmd              _puts.c
+
+.ul
+AUTHORS         env_utils.c       hsh          man_1_simple_shell
+.ul
+process_selector.c  README.md    test_ls_2
+.ul
+built_interr.c  errno_lin_st.c    LICENSE      mem_utils.c         _putchar.c          str_utils.c
+
+
+.Sh SHELL GRAMMAR
+
+.SS Simple Commands
+
+
+A simple command is a sequence of optional variable assignments followed by blank-separated
+words and redirections, and terminated by a control operator.
+The first word specifies the command to be executed,
+and is passed as argument zero.
+The remaining words are passed as arguments to the invoked command.
 .Sh SEE ALSO
-.\" List links in ascending order by section, alphabetically within a section.
-.\" Please do not reference files that do not exist without filing a bug report
-.Xr a 1 ,
-.Xr b 1 ,
-.Xr c 1 ,
-.Xr a 2 ,
-.Xr b 2 ,
-.Xr a 3 ,
-.Xr b 3
-.\" .Sh BUGS              \" Document known, unremedied bugs
-.\" .Sh HISTORY           \" Document history if command behaves in a unique manner
+.ul
+bash(1)
+.Sh AUTHOR
+Karen Campo & David Orejuela
