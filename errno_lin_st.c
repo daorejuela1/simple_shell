@@ -1,8 +1,8 @@
 #include "holberton.h"
 /**
- * errno_lin_st - search for error messages
- * @error: pointer to error message
- * @name: string of err_message
+ * errno_lin_st - Search and show error messages
+ * @error: The pointer to error message
+ * @name: The string of err_message
  * Return: Nothing
  */
 void errno_lin_st(char *name, char *error)
@@ -25,10 +25,10 @@ exit(127);
 }
 
 /**
- * errno_per - counts the line numbers
- * @name: the name of shell or sh
- * @line: number of lines
- * @error: pointer to error messages
+ * errno_per - Counts the line numbers
+ * @name: The name of shell or sh
+ * @line: The number of lines
+ * @error: The pointer to error messages
  * Return: status code 126
  */
 int errno_per(char *name, int line, char *error)
@@ -63,11 +63,11 @@ return (126);
 }
 
 /**
- * errno_found - prints error depending on the case
- * @name: pointer to a string of error messages
- * @line: number of lines
- * @error: pointer to error
- * Return: error code 127
+ * errno_found - Prints error depending on the case
+ * @name: The pointer to a string of error messages
+ * @line: The number of lines
+ * @error: The pointer to error
+ * Return: Error code 127
  */
 int errno_found(char *name, int line, char *error)
 {
@@ -101,12 +101,12 @@ return (127);
 }
 
 /**
- * errno_int - prints error depending on the case
- * @name: pointer to a string of error messages
- * @line: number of lines
- * @error: pointer to error
- * @code: code that rise the error
- * Return: error code 2
+ * errno_int - Prints error depending on the case
+ * @name: The pointer to a string of error messages
+ * @line: The number of lines
+ * @error: The pointer to error
+ * @code: The code that rise the error
+ * Return: Error code 2
  */
 int errno_int(char *name, int line, char *error, char *code)
 {
