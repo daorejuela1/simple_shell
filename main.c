@@ -5,6 +5,7 @@
  *@argc: quantity of arguments
  *@argv: value of the arguments
  *@env: enviroment variable
+ * Return: status
  */
 int main(int argc, char *argv[], char **env)
 {
