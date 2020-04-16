@@ -1,11 +1,10 @@
 #include "holberton.h"
 
 /**
- * main - reads the user input and checks if is valid
+ * main - reads the user input and avaloidates it
  *@argc: quantity of arguments
  *@argv: value of the arguments
  *@env: enviroment variable
- *Return: Always 0
  */
 int main(int argc, char *argv[], char **env)
 {
