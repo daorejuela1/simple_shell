@@ -8,7 +8,7 @@
 * [Unix shell](https://intranet.hbtn.io/rltoken/RsZhUQ_26du3YUYKXO3gXA "Unix shell")
 * [Thompson shell](https://intranet.hbtn.io/rltoken/CNhUqQ5TFpdvFGsd1Meyig "Thompson shell")
 * [Ken Thompson](https://intranet.hbtn.io/rltoken/G_kMmrcR7rm3uXsiVk1F0w "Ken Thompson")
-*  [Everything you need to know to start coding your own shell](https://-   `sh`  (_Run  `sh`  as well_)/rltoken/NLmjz6DsgyNjdD7GwL6VRA "Everything you need to know to start coding your own shell")
+*  [Everything you need to know to start coding your own shell](https://-`sh`(_Run  `sh`  as well_)/rltoken/NLmjz6DsgyNjdD7GwL6VRA "Everything you need to know to start coding your own shell")
 
 **man or help**:
 
@@ -179,11 +179,9 @@ It is an acronym for ‘End Of File’. It refers to a state that may occur whil
 
 Here is an example: 
 
-![Example](https://i.ibb.co/5RJHfPv/Fly-Converted.gif)
+<img src="/Images/Test-result.gif?raw=true" width="200px">
 
 
 ## FlowCharts
 
-![FlowChart](https://i.ibb.co/yXcQTqx/Shell-flow-chart-new-proc.jpg)
-![FlowChart2](https://i.ibb.co/qsKnVqL/Shell-flow-chart-main-c.jpg)
-![FlowChart3](https://i.ibb.co/MZ9RvQV/Shell-flow-chart-process-selector.jpg)
+<img src="/art/sample.gif?raw=true" width="200px">
