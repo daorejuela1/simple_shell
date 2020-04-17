@@ -8,7 +8,7 @@
 * [Unix shell](https://intranet.hbtn.io/rltoken/RsZhUQ_26du3YUYKXO3gXA "Unix shell")
 * [Thompson shell](https://intranet.hbtn.io/rltoken/CNhUqQ5TFpdvFGsd1Meyig "Thompson shell")
 * [Ken Thompson](https://intranet.hbtn.io/rltoken/G_kMmrcR7rm3uXsiVk1F0w "Ken Thompson")
-*  [Everything you need to know to start coding your own shell](https://-`sh`(_Run  `sh`  as well_)/rltoken/NLmjz6DsgyNjdD7GwL6VRA "Everything you need to know to start coding your own shell")
+* [Everything you need to know to start coding your own shell](https:///rltoken/NLmjz6DsgyNjdD7GwL6VRA)
 
 **man or help**:
 
@@ -177,7 +177,7 @@ Child process may terminate due to any of these:
 
 It is an acronym for ‘End Of File’. It refers to a state that may occur while reading a file, or anything that can be read using the semantics of file IO, such as reading from devices or streams in Linux. The state can be represented in some cases by a value which equates to that state. There is a C function, `feof()`, whihc can be used to test whether reading from a stream has caused the EOF state to be reached. In certain cases, it is possible to generate an EOF state, such as by typing Ctrl-D to terminate standard input to a process, such as a shell.
 
-Here is an example: 
+Here is an example of our shell: 
 
 <img src="/Images/Test-result.gif?raw=true">
 
@@ -185,6 +185,44 @@ Here is an example:
 ## FlowCharts
 
 <img src="/Images/Shell flow chart-main.c.jpg?raw=true">
+main.c flowchart (main logic to capture user information)
 <img src="/Images/Shell flow chart-new_proc.jpg?raw=true">
+create_proc flowchart (main logic to decide if an input is a valid command)
 <img src="/Images/Shell flow chart-process_selector.jpg?raw=true">
+process_selector flowchart (main logic to call another executable file from c code)
 
+## Installation
+
+Execute the following commmand in your terminal:
+
+```
+sudo apt install cowsay && git clone https://github.com/daorejuela1/simple_shell.git && gcc -Wall -Werror -Wextra -pedantic simple_shell/*.c -o simple_shell/hsh
+```
+
+## Execute the simple shell
+
+Afters installing the shell you can run it in interactive mode or non-interactive mode
+
+```
+cd simple_shell/
+./hsh
+$ls
+$exit
+```
+
+```
+cd simple_shell/
+echo "ls" | ./hsh
+```
+## Run example file
+
+To run the example file use:
+```
+cd simple_shell/
+Example/./test
+```
+
+## To Do
+
+ - [ ] Read files instead of standar input
+ - [ ] Manage pipelines
