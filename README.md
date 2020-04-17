@@ -184,9 +184,7 @@ Here is an example:
 
 ## FlowCharts
 
-<img src="https://i.ibb.co/yXcQTqx/Shell-flow-chart-new-proc.jpg" alt="Shell-flow-chart-new-proc" border="0">
-<img src="https://i.ibb.co/qsKnVqL/Shell-flow-chart-main-c.jpg" alt="Shell-flow-chart-main-c" border="0"></a>
-<img src="https://i.ibb.co/MZ9RvQV/Shell-flow-chart-process-selector.jpg" alt="Shell-flow-chart-process-selector" border="0">
-
-
+<img src="/Images/Shell flow chart-main.c.jpg?raw=true">
+<img src="/Images/Shell flow chart-new_proc.jpg?raw=true">
+<img src="/Images/Shell flow chart-process_selector.jpg?raw=true">
 
