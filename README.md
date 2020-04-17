@@ -5,14 +5,61 @@
 
 **Read or watch**:
 
--   [Unix shell](https://intranet.hbtn.io/rltoken/RsZhUQ_26du3YUYKXO3gXA "Unix shell")
--   [Thompson shell](https://intranet.hbtn.io/rltoken/CNhUqQ5TFpdvFGsd1Meyig "Thompson shell")
--   [Ken Thompson](https://intranet.hbtn.io/rltoken/G_kMmrcR7rm3uXsiVk1F0w "Ken Thompson")
--   [Everything you need to know to start coding your own shell](https://-   `sh`  (_Run  `sh`  as well_)/rltoken/NLmjz6DsgyNjdD7GwL6VRA "Everything you need to know to start coding your own shell")
+* [Unix shell](https://intranet.hbtn.io/rltoken/RsZhUQ_26du3YUYKXO3gXA "Unix shell")
+* [Thompson shell](https://intranet.hbtn.io/rltoken/CNhUqQ5TFpdvFGsd1Meyig "Thompson shell")
+* [Ken Thompson](https://intranet.hbtn.io/rltoken/G_kMmrcR7rm3uXsiVk1F0w "Ken Thompson")
+*  [Everything you need to know to start coding your own shell](https://-   `sh`  (_Run  `sh`  as well_)/rltoken/NLmjz6DsgyNjdD7GwL6VRA "Everything you need to know to start coding your own shell")
 
 **man or help**:
 
--   `sh`  (_Run  `sh`  as well_)
+* `sh`  (_Run  `sh`  as well_)
+
+## General Requirements
+
+
+*  All files will be compiled on **Ubuntu** 14.04 LTS
+* C programs and functions will be compiled with  `**gcc**`  using the flags  `-Wall`  `-Werror``-Wextra`  `and -pedantic`
+* Files should end with a new line
+* Use the  `Betty`  style. 
+* The shell should not have any memory leaks
+* No more than 5 functions per file
+* All header files should be include guarded
+* Use system calls only when if needed to ([why?](https://intranet.hbtn.io/rltoken/StgX3y26fwPNV_DqlZLErw "why?"))
+
+
+### List of allowed functions and system calls
+
+-   `access`  (man 2 access)
+-   `chdir`  (man 2 chdir)
+-   `close`  (man 2 close)
+-   `closedir`  (man 3 closedir)
+-   `execve`  (man 2 execve)
+-   `exit`  (man 3 exit)
+-   `_exit`  (man 2 _exit)
+-   `fflush`  (man 3 fflush)
+-   `fork`  (man 2 fork)
+-   `free`  (man 3 free)
+-   `getcwd`  (man 3 getcwd)
+-   `getline`  (man 3 getline)
+-   `isatty`  (man 3 isatty)
+-   `kill`  (man 2 kill)
+-   `malloc`  (man 3 malloc)
+-   `open`  (man 2 open)
+-   `opendir`  (man 3 opendir)
+-   `perror`  (man 3 perror)
+-   `read`  (man 2 read)
+-   `readdir`  (man 3 readdir)
+-   `signal`  (man 2 signal)
+-   `stat`  (__xstat) (man 2 stat)
+-   `lstat`  (__lxstat) (man 2 lstat)
+-   `fstat`  (__fxstat) (man 2 fstat)
+-   `strtok`  (man 3 strtok)
+-   `wait`  (man 2 wait)
+-   `waitpid`  (man 2 waitpid)
+-   `wait3`  (man 2 wait3)
+-   `wait4`  (man 2 wait4)
+-   `write`  (man 2 write)
+
 
 ### General Learning Objectives
 
@@ -129,57 +176,16 @@ Child process may terminate due to any of these:
 ###   What is  `EOF`  / “end-of-file”?
 
 It is an acronym for ‘End Of File’. It refers to a state that may occur while reading a file, or anything that can be read using the semantics of file IO, such as reading from devices or streams in Linux. The state can be represented in some cases by a value which equates to that state. There is a C function, `feof()`, whihc can be used to test whether reading from a stream has caused the EOF state to be reached. In certain cases, it is possible to generate an EOF state, such as by typing Ctrl-D to terminate standard input to a process, such as a shell.
-~~~
+
+Here is an example: 
+
 https://i.ibb.co/5RJHfPv/Fly-Converted.gif
-~~~
-
-## General Requirements
-
-
--   All files will be compiled on **Ubuntu** 14.04 LTS
--   C programs and functions will be compiled with  `**gcc**`  using the flags  `-Wall`  `-Werror``-Wextra`  `and -pedantic`
--   Files should end with a new line
--   Use the  `Betty`  style. 
--   The shell should not have any memory leaks
--   No more than 5 functions per file
--   All header files should be include guarded
--   Use system calls only when if needed to ([why?](https://intranet.hbtn.io/rltoken/StgX3y26fwPNV_DqlZLErw "why?"))
-
-
-### List of allowed functions and system calls
-
--   `access`  (man 2 access)
--   `chdir`  (man 2 chdir)
--   `close`  (man 2 close)
--   `closedir`  (man 3 closedir)
--   `execve`  (man 2 execve)
--   `exit`  (man 3 exit)
--   `_exit`  (man 2 _exit)
--   `fflush`  (man 3 fflush)
--   `fork`  (man 2 fork)
--   `free`  (man 3 free)
--   `getcwd`  (man 3 getcwd)
--   `getline`  (man 3 getline)
--   `isatty`  (man 3 isatty)
--   `kill`  (man 2 kill)
--   `malloc`  (man 3 malloc)
--   `open`  (man 2 open)
--   `opendir`  (man 3 opendir)
--   `perror`  (man 3 perror)
--   `read`  (man 2 read)
--   `readdir`  (man 3 readdir)
--   `signal`  (man 2 signal)
--   `stat`  (__xstat) (man 2 stat)
--   `lstat`  (__lxstat) (man 2 lstat)
--   `fstat`  (__fxstat) (man 2 fstat)
--   `strtok`  (man 3 strtok)
--   `wait`  (man 2 wait)
--   `waitpid`  (man 2 waitpid)
--   `wait3`  (man 2 wait3)
--   `wait4`  (man 2 wait4)
--   `write`  (man 2 write)
 
 
 ## FlowCharts
 
+https://i.ibb.co/yXcQTqx/Shell-flow-chart-new-proc.jpg
+https://i.ibb.co/qsKnVqL/Shell-flow-chart-main-c.jpg
+https://i.ibb.co/MZ9RvQV/Shell-flow-chart-process-selector.jpg
 
+https://i.ibb.co/0Qyw9vw/Untitled-Diagram-execve-chart.jpg
