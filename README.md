@@ -1,5 +1,6 @@
 
 #  0x16. C - Simple Shell
+![Build Status](https://travis-ci.org/joemccann/dillinger.svg?branch=master)
 
 ## Resources
 
@@ -226,3 +227,12 @@ Example/./test
 
  - [ ] Read files instead of standar input
  - [ ] Manage pipelines
+
+## Social networks
+
+Follow us on Twitter 
+Karen Campo & 
+[![Karen Campo](http://i.imgur.com/tXSoThF.png)](https://twitter.com/KarenCa96752258)
+David Orejuela
+[![David Orejuela](http://i.imgur.com/tXSoThF.png)](https://twitter.com/daorejuela14)
+
