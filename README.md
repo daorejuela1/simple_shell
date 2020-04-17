@@ -179,9 +179,14 @@ It is an acronym for ‘End Of File’. It refers to a state that may occur whil
 
 Here is an example: 
 
-<img src="/Images/Test-result.gif?raw=true" width="200px">
+<img src="/Images/Test-result.gif?raw=true">
 
 
 ## FlowCharts
 
-<img src="/art/sample.gif?raw=true" width="200px">
+<img src="https://i.ibb.co/yXcQTqx/Shell-flow-chart-new-proc.jpg" alt="Shell-flow-chart-new-proc" border="0">
+<img src="https://i.ibb.co/qsKnVqL/Shell-flow-chart-main-c.jpg" alt="Shell-flow-chart-main-c" border="0"></a>
+<img src="https://i.ibb.co/MZ9RvQV/Shell-flow-chart-process-selector.jpg" alt="Shell-flow-chart-process-selector" border="0">
+
+
+
