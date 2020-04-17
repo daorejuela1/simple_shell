@@ -187,4 +187,3 @@ Here is an example:
 ![FlowChart](https://i.ibb.co/yXcQTqx/Shell-flow-chart-new-proc.jpg)
 ![FlowChart2](https://i.ibb.co/qsKnVqL/Shell-flow-chart-main-c.jpg)
 ![FlowChart3](https://i.ibb.co/MZ9RvQV/Shell-flow-chart-process-selector.jpg)
-![FlowChart 4](https://i.ibb.co/0Qyw9vw/Untitled-Diagram-execve-chart.jpg)
