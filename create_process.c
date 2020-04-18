@@ -34,6 +34,7 @@ int new_pro(creator_args param)
 			else if (stat(full_path, &st) == 0 && access(full_path, X_OK) == 0)
 				process_selector(full_path, command, param.status);
 		free(en_variable);
+		en_variable = NULL;
 		free(full_path);
 		}
 		free_grid(command, data_length);
