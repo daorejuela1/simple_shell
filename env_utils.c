@@ -27,11 +27,14 @@ char *_getenv(const char *name)
 				return (NULL);
 			_strncpy(result, key, _strlen(key));
 			free(copy);
+			copy = NULL;
 			return (result);
 		}
 		free(copy);
+		copy = NULL;
 	}
 	free(copy);
+	copy = NULL;
 	return (NULL);
 }
 /**
@@ -46,6 +49,8 @@ char *path_searcher(char **command, char *env)
 	char *final_path = NULL;
 	struct stat st;
 
+	if (env == NULL)
+		return (NULL);
 	copy = _calloc(_strlen(env) + 1, 1);
 	_strncpy(copy, env, _strlen(env));
 	token = strtok(copy, ":");
