@@ -76,6 +76,7 @@ void handler_ctrlc(int sig);
 int isNumber(char *s);
 int errno_int(char *name, int line, char *error, char *code);
 int handle_error(creator_args param, char **command, int *data_length);
+int str_srch(char *array, char charac);
 /*space for extern variables*/
 extern char **environ;
 #endif
