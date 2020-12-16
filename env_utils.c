@@ -17,7 +17,7 @@ char *_getenv(const char *name)
 			return (NULL);
 		_strncpy(copy, environ[i], _strlen(environ[i]));
 		key = strtok(copy, "=");
-		if (_strcmp(key, (char *)name) == 0)
+		if (_strcmp((char *)name, key) == 0)
 		{
 			key = strtok(NULL, "=");
 			if (key == NULL)

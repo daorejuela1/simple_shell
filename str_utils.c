@@ -7,26 +7,27 @@
  */
 int _strcmp(char *p1, char *p2)
 {
-const unsigned char *s1 = (const unsigned char *) p1;
-const unsigned char *s2 = (const unsigned char *) p2;
-unsigned char c1, c2;
-do {
-c1 = (unsigned char) *s1++;
-c2 = (unsigned char) *s2++;
-if (c1 == '\0')
+	const unsigned char *s1 = (const unsigned char *) p1;
+	const unsigned char *s2 = (const unsigned char *) p2;
+	unsigned char c1, c2;
+
+	do {
+		c1 = (unsigned char) *s1++;
+		c2 = (unsigned char) *s2++;
+		if (c1 == '\0')
+			return (c1 - c2);
+	} while (c1 == c2);
 	return (c1 - c2);
-} while (c1 == c2);
-return (c1 - c2);
 }
 
 /**
-  *_strncpy - merge  two strings
-  *
-  *@dest: second string
-  *@src: first string
-  *@n: limit number
-  *Return: a pointer, to dest
-  */
+ *_strncpy - merge  two strings
+ *
+ *@dest: second string
+ *@src: first string
+ *@n: limit number
+ *Return: a pointer, to dest
+ */
 char *_strncpy(char *dest, char *src, int n)
 {
 	int i;
@@ -51,18 +52,18 @@ int _strlen(char *s)
 
 	while (*(s + counter) != 0)
 	{
-	counter++;
+		counter++;
 	}
 	return (counter);
 }
 
 /**
-  *_strcat - concatenates two strings
-  *
-  *@dest: second string
-  *@src: first string
-  *Return: a pointer, to dest
-  */
+ *_strcat - concatenates two strings
+ *
+ *@dest: second string
+ *@src: first string
+ *Return: a pointer, to dest
+ */
 char *_strcat(char *dest, char *src)
 {
 	int i, counter = 0;
