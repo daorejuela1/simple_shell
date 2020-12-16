@@ -21,10 +21,9 @@ int new_pro(creator_args param)
 		if (stat(command[0], &st) == 0 &&
 				access(command[0], X_OK) == 0 && en_variable)
 			process_selector(command[0], command, param.status);
-		else if (stat(command[0], &st) == 0 &&
-				(access(command[0], X_OK) != 0 || !en_variable))
+		else if (stat(command[0], &st) == 0 && access(command[0], X_OK) != 0)
 			*(param.status) = errno_per(param.argv[0], *(param.counter), command[0]);
-		else if (stat(command[0], &st) != 0)
+		else
 		{
 			full_path = path_searcher(command, en_variable);
 			if (full_path == NULL)
