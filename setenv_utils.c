@@ -75,7 +75,7 @@ int _setenv(creator_args param, char **command, int *data_length)
 	value = command[2];
 	if (!value)
 		return (-1);
-	new_command[1] = _calloc(strlen(value) + 1, 1);
+	new_command[1] = _calloc(_strlen(value) + 1, 1);
 	new_command[0] = NULL;
 	_strncpy(new_command[1], value, _strlen(value));
 	_unsetenv(param, new_command, &command_len);
@@ -85,7 +85,8 @@ int _setenv(creator_args param, char **command, int *data_length)
 	_strcat(new_word, value);
 	for (env_vars = 0; environ[env_vars]; env_vars++)
 		;
-	new_environ = realloc(environ, (env_vars + 2) * sizeof(environ));
+	new_environ = _realloc(environ, (env_vars + 1) * sizeof(environ),
+		   	(env_vars + 2) * sizeof(environ));
 	if (!new_environ)
 	{
 		return (-1);

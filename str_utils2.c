@@ -32,7 +32,7 @@ int _strncmp(char *p1, char *p2, int n)
 	const unsigned char *s1 = (const unsigned char *) p1;
 	const unsigned char *s2 = (const unsigned char *) p2;
 	unsigned char c1, c2;
-	int i = 0;
+	int i = 1;
 
 	do {
 		c1 = (unsigned char) *s1++;
