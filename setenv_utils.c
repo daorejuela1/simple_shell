@@ -71,13 +71,16 @@ int _setenv(creator_args param, char **command, int *data_length)
 		free_grid(command, *data_length);
 		return (-1);
 	}
-	new_command = _calloc(3, sizeof(char *));
 	value = command[2];
 	if (!value)
+	{
+		free_grid(command, *data_length);
 		return (-1);
-	new_command[1] = _calloc(_strlen(value) + 1, 1);
+	}
+	new_command = _calloc(3, sizeof(char *));
+	new_command[1] = _calloc(_strlen(name) + 1, 1);
 	new_command[0] = NULL;
-	_strncpy(new_command[1], value, _strlen(value));
+	_strncpy(new_command[1], name, _strlen(value));
 	_unsetenv(param, new_command, &command_len);
 	new_word = _calloc(_strlen(name) + _strlen(value) + 2, 1);
 	_strncpy(new_word, name, _strlen(name));
