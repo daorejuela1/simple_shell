@@ -80,7 +80,7 @@ int _setenv(creator_args param, char **command, int *data_length)
 	new_command = _calloc(3, sizeof(char *));
 	new_command[1] = _calloc(_strlen(name) + 1, 1);
 	new_command[0] = NULL;
-	_strncpy(new_command[1], name, _strlen(value));
+	_strncpy(new_command[1], name, _strlen(name));
 	_unsetenv(param, new_command, &command_len);
 	new_word = _calloc(_strlen(name) + _strlen(value) + 2, 1);
 	_strncpy(new_word, name, _strlen(name));
@@ -89,7 +89,7 @@ int _setenv(creator_args param, char **command, int *data_length)
 	for (env_vars = 0; environ[env_vars]; env_vars++)
 		;
 	new_environ = _realloc(environ, (env_vars + 1) * sizeof(environ),
-		   	(env_vars + 2) * sizeof(environ));
+			(env_vars + 2) * sizeof(environ));
 	if (!new_environ)
 	{
 		return (-1);
