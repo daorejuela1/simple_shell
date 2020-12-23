@@ -91,7 +91,6 @@ int (*get_op_func(char *string))(creator_args, char **, int *);
 int _unsetenv(creator_args param, char **command, int *data_length);
 int _setenv(creator_args param, char **command, int *data_length);
 int initialize_env(void);
-void free_list(int exitStatus, void *arg);
 /*space for extern variables*/
 extern char **environ;
 void free_env(void);

@@ -45,6 +45,6 @@ int main(int argc, char *argv[])
 		}
 	}
 	free(line);
-	free_list(1, (void *) 0);
+	free_env();
 	return (status);
 }

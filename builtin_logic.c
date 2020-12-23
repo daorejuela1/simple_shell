@@ -11,7 +11,7 @@ int (*get_op_func(char *string))(creator_args, char **, int *)
 	builtin_t command[] = {
 	{"exit", handle_error},
 	{"setenv", _setenv},
-	{"unset", _unsetenv},
+	{"unsetenv", _unsetenv},
 	{NULL, NULL}
 	};
 

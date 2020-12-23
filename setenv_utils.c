@@ -19,6 +19,7 @@ int _unsetenv(creator_args param, char **command, int *data_length)
 	name = command[1];
 	if (name == NULL || name[0] == '\0' || str_srch(name, '=') != -1)
 	{
+		free_grid(command, *data_length);
 		return (-1);
 	}
 	if (!environ)
@@ -68,6 +69,7 @@ int _setenv(creator_args param, char **command, int *data_length)
 	name = command[1];
 	if (name == NULL || name[0] == '\0' || str_srch(name, '=') != -1)
 	{
+		free_grid(command, *data_length);
 		return (-1);
 	}
 	value = command[2];
@@ -128,14 +130,12 @@ int initialize_env(void)
 }
 
 /**
- * free_list - frees the list at the end
+ * free_env - frees the list at the end
  */
-void free_list(int exitStatus, void *arg)
+void free_env(void)
 {
 	int env_vars = 0;
 
-	UNUSED(exitStatus);
-	UNUSED(arg);
 	for (env_vars = 0; environ[env_vars]; env_vars++)
 	{
 		free(environ[env_vars]);
