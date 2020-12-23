@@ -14,7 +14,6 @@ int main(int argc, char *argv[])
 	creator_args c_args;
 
 	signal(SIGINT, handler_ctrlc), initialize_env();
-	on_exit(free_list, (void *) 0);
 	c_args.line = &line, c_args.argv = argv;
 	c_args.counter = &counter, c_args.start = &start, c_args.status = &status;
 	if (argc > 1)
@@ -46,5 +45,6 @@ int main(int argc, char *argv[])
 		}
 	}
 	free(line);
+	free_list(1, (void *) 0);
 	return (status);
 }
