@@ -12,6 +12,7 @@
 #include <fcntl.h>
 #include <errno.h>
 
+#define UNUSED(x) (void)(x);
 /*Structure definition*/
 /**
  * struct path_dir - singly linked list
@@ -39,7 +40,7 @@ typedef struct path_dir
  * @status: Returns the number of executing code of every process
  *
  * Description: This structure give us input arguments
- * to create processes - for Holberton projectpu
+ * to create processes - for Holberton project
  */
 typedef struct creator_params
 {
@@ -49,6 +50,17 @@ typedef struct creator_params
 	char *start;
 	int *status;
 } creator_args;
+
+/**
+ * struct builtin - struct to create function pointers for built in commands
+ * @command: string that contains the user command
+ * @f: function to execute the user command
+ */
+typedef struct builtin
+{
+	char *command;
+	int (*f)(creator_args, char **, int *);
+} builtin_t;
 
 /* Space for function prototypes*/
 int _putchar(char c);
@@ -71,12 +83,19 @@ char *path_searcher(char **command, char *env);
 char *_getenv(const char *name);
 int new_pro(creator_args param);
 int _atoi(char *s);
-int print_env(char **env);
 void handler_ctrlc(int sig);
 int isNumber(char *s);
 int errno_int(char *name, int line, char *error, char *code);
 int handle_error(creator_args param, char **command, int *data_length);
 int str_srch(char *array, char charac);
+int (*get_op_func(char *string))(creator_args, char **, int *);
+int _unsetenv(creator_args param, char **command, int *data_length);
+int _setenv(creator_args param, char **command, int *data_length);
+int initialize_env(void);
+void free_list(void);
 /*space for extern variables*/
 extern char **environ;
+void free_env(void);
+int initialize_env(void);
+int print_env(void);
 #endif
