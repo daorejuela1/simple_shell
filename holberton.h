@@ -12,7 +12,7 @@
 #include <fcntl.h>
 #include <errno.h>
 
-#define UNUSED(x) (void)(x);
+#define UNUSED(x) (void)(x)
 /*Structure definition*/
 /**
  * struct path_dir - singly linked list
@@ -34,7 +34,6 @@ typedef struct path_dir
  * struct creator_params - singly linked list
  * @line: pointer that stores what the user writes
  * @counter: counter of shell, shows error in the lines
- * @en_variable: path of the enviroment variable
  * @argv: Entry to program arguments
  * @start: Indicates to continue prompt cycle
  * @status: Returns the number of executing code of every process
@@ -92,7 +91,7 @@ int (*get_op_func(char *string))(creator_args, char **, int *);
 int _unsetenv(creator_args param, char **command, int *data_length);
 int _setenv(creator_args param, char **command, int *data_length);
 int initialize_env(void);
-void free_list(void);
+void free_list(int exitStatus, void *arg);
 /*space for extern variables*/
 extern char **environ;
 void free_env(void);

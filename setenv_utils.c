@@ -130,10 +130,12 @@ int initialize_env(void)
 /**
  * free_list - frees the list at the end
  */
-void free_list(void)
+void free_list(int exitStatus, void *arg)
 {
 	int env_vars = 0;
 
+	UNUSED(exitStatus);
+	UNUSED(arg);
 	for (env_vars = 0; environ[env_vars]; env_vars++)
 	{
 		free(environ[env_vars]);
