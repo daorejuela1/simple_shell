@@ -65,13 +65,13 @@ int _setenv(creator_args param, char **command, int *data_length)
 	char **new_command;
 
 	UNUSED(param);
-	new_command = _calloc(3, sizeof(char *));
 	name = command[1];
 	if (name == NULL || name[0] == '\0' || str_srch(name, '=') != -1)
 	{
 		free_grid(command, *data_length);
 		return (-1);
 	}
+	new_command = _calloc(3, sizeof(char *));
 	value = command[2];
 	if (!value)
 		return (-1);
