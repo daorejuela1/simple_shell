@@ -63,16 +63,22 @@ int _setenv(creator_args param, char **command, int *data_length)
 	char *new_word, **new_environ, *name = NULL, *value = NULL;
 	int env_vars = 0, len = 0;
 
-	UNUSED(param), name = command[1], value = command[2];
-	if (name == NULL || name[0] == '\0' || str_srch(name, '=') != -1 || !value)
+	UNUSED(param), name = command[1];
+	if (name == NULL || name[0] == '\0' || str_srch(name, '=') != -1)
 	{
 		free_grid(command, *data_length);
 		return (-1);
 	}
+	value = command[2];
+	if (!value)
+	{
+		free_grid(command, *data_length);
+		return (-1);
+	}
+	len = _strlen(name);
 	new_word = _calloc(_strlen(name) + _strlen(value) + 2, 1);
 	_strncpy(new_word, name, _strlen(name));
 	_strcat(new_word, "="), _strcat(new_word, value);
-	len = _strlen(name);
 	for (env_vars = 0; environ[env_vars]; env_vars++)
 	{
 		if (_strncmp(environ[env_vars], name, len) == 0 &&
@@ -87,9 +93,7 @@ int _setenv(creator_args param, char **command, int *data_length)
 	new_environ = _realloc(environ, (env_vars + 1) * sizeof(environ),
 			(env_vars + 2) * sizeof(environ));
 	if (!new_environ)
-	{
 		return (-1);
-	}
 	new_environ[env_vars] = new_word;
 	new_environ[env_vars + 1] = 0;
 	environ = new_environ;
