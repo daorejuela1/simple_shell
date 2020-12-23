@@ -23,7 +23,7 @@ int _unsetenv(creator_args param, char **command, int *data_length)
 	}
 	if (!environ)
 		return (0);
-	len = strlen(name);
+	len = _strlen(name);
 	for (env_vars = 0; environ[env_vars]; env_vars++)
 		;
 	new_environ = malloc((env_vars) * sizeof(environ));
@@ -77,9 +77,9 @@ int _setenv(creator_args param, char **command, int *data_length)
 	free_grid(command, *data_length);
 	_unsetenv(param, new_command, &command_len);
 	new_word = malloc(strlen(name) + strlen(value) + 2);
-	strcpy(new_word, name);
-	strcat(new_word, "=");
-	strcat(new_word, value);
+	_strncpy(new_word, name, _strlen(name));
+	_strcat(new_word, "=");
+	_strcat(new_word, value);
 	for (env_vars = 0; environ[env_vars]; env_vars++)
 		;
 	new_environ = realloc(environ, (env_vars + 2) * sizeof(environ));
