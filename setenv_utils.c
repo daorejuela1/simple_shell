@@ -32,7 +32,7 @@ int _unsetenv(creator_args param, char **command, int *data_length)
 		return (-1);
 	for (i = 0; environ[i]; i++)
 	{
-		if (strncmp(environ[i], name, len) == 0 && (environ[i])[len] == '=')
+		if (_strncmp(environ[i], name, len) == 0 && (environ[i])[len] == '=')
 		{
 			free(environ[i]);
 			environ[i] = NULL;
