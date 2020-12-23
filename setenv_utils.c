@@ -17,7 +17,7 @@ int _unsetenv(creator_args param, char **command, int *data_length)
 	UNUSED(param);
 	UNUSED(data_length);
 	name = command[1];
-	if (name == NULL || name[0] == '\0' || strchr(name, '=') != NULL)
+	if (name == NULL || name[0] == '\0' || str_srch(name, '=') != -1)
 	{
 		return (-1);
 	}
@@ -26,7 +26,7 @@ int _unsetenv(creator_args param, char **command, int *data_length)
 	len = _strlen(name);
 	for (env_vars = 0; environ[env_vars]; env_vars++)
 		;
-	new_environ = malloc((env_vars) * sizeof(environ));
+	new_environ = _calloc((env_vars) + 1, sizeof(environ));
 	if (!new_environ)
 		return (-1);
 	for (i = 0; environ[i]; i++)
@@ -43,8 +43,8 @@ int _unsetenv(creator_args param, char **command, int *data_length)
 		}
 	}
 	free(environ);
-	new_environ[j] = 0;
 	environ = new_environ;
+	environ[j] = 0;
 	free_grid(command, *data_length);
 	return (0);
 }
@@ -64,19 +64,20 @@ int _setenv(creator_args param, char **command, int *data_length)
 	char **new_command;
 
 	UNUSED(param);
-	new_command = malloc(2 * sizeof(char *));
+	new_command = _calloc(3, sizeof(char *));
 	name = command[1];
-	if (name == NULL || name[0] == '\0' || strchr(name, '=') != NULL)
+	if (name == NULL || name[0] == '\0' || str_srch(name, '=') != -1)
 	{
 		return (-1);
 	}
 	value = command[2];
+	if (!value)
+		return (-1);
+	new_command[1] = _calloc(strlen(value) + 1, 1);
 	new_command[0] = NULL;
-	new_command[1] = malloc(_strlen(value) + 1);
 	_strncpy(new_command[1], value, _strlen(value));
-	free_grid(command, *data_length);
 	_unsetenv(param, new_command, &command_len);
-	new_word = malloc(strlen(name) + strlen(value) + 2);
+	new_word = _calloc(_strlen(name) + _strlen(value) + 2, 1);
 	_strncpy(new_word, name, _strlen(name));
 	_strcat(new_word, "=");
 	_strcat(new_word, value);
@@ -90,6 +91,7 @@ int _setenv(creator_args param, char **command, int *data_length)
 	new_environ[env_vars] = new_word;
 	new_environ[env_vars + 1] = 0;
 	environ = new_environ;
+	free_grid(command, *data_length);
 	return (0);
 }
 
@@ -112,12 +114,13 @@ int initialize_env(void)
 	}
 	for (env_vars = 0; environ[env_vars]; env_vars++)
 	{
-		new_environ[env_vars] = malloc(strlen(environ[env_vars]) + 1);
+		new_environ[env_vars] = _calloc(_strlen(environ[env_vars]) + 1, 1);
 		if (!new_environ[env_vars])
 		{
 			return (-1);
 		}
-		strcpy(new_environ[env_vars], environ[env_vars]);
+		_strncpy(new_environ[env_vars], environ[env_vars],
+				_strlen(environ[env_vars]));
 	}
 	new_environ[env_vars] = 0;
 	environ = new_environ;
