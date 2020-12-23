@@ -61,33 +61,29 @@ int _unsetenv(creator_args param, char **command, int *data_length)
 int _setenv(creator_args param, char **command, int *data_length)
 {
 	char *new_word, **new_environ, *name = NULL, *value = NULL;
-	int env_vars = 0, command_len = 2;
-	char **new_command;
+	int env_vars = 0, len = 0;
 
-	UNUSED(param);
-	name = command[1];
-	if (name == NULL || name[0] == '\0' || str_srch(name, '=') != -1)
+	UNUSED(param), name = command[1], value = command[2];
+	if (name == NULL || name[0] == '\0' || str_srch(name, '=') != -1 || !value)
 	{
 		free_grid(command, *data_length);
 		return (-1);
 	}
-	value = command[2];
-	if (!value)
-	{
-		free_grid(command, *data_length);
-		return (-1);
-	}
-	new_command = _calloc(3, sizeof(char *));
-	new_command[1] = _calloc(_strlen(name) + 1, 1);
-	new_command[0] = NULL;
-	_strncpy(new_command[1], name, _strlen(name));
-	_unsetenv(param, new_command, &command_len);
 	new_word = _calloc(_strlen(name) + _strlen(value) + 2, 1);
 	_strncpy(new_word, name, _strlen(name));
-	_strcat(new_word, "=");
-	_strcat(new_word, value);
+	_strcat(new_word, "="), _strcat(new_word, value);
+	len = _strlen(name);
 	for (env_vars = 0; environ[env_vars]; env_vars++)
-		;
+	{
+		if (_strncmp(environ[env_vars], name, len) == 0 &&
+				(environ[env_vars])[len] == '=')
+		{
+			free(environ[env_vars]);
+			environ[env_vars] = new_word;
+			free_grid(command, *data_length);
+			return (0);
+		}
+	}
 	new_environ = _realloc(environ, (env_vars + 1) * sizeof(environ),
 			(env_vars + 2) * sizeof(environ));
 	if (!new_environ)
