@@ -19,11 +19,14 @@ static char *remove_comments(char *line)
 	if (!i)
 	{
 		free(line);
-	}
 		return (NULL);
+	}
 	new_line = _calloc(i + 1, 1);
 	if (!new_line)
+	{
+		free(line);
 		return (NULL);
+	}
 	_strncpy(new_line, line, i);
 	free(line);
 	return (new_line);
