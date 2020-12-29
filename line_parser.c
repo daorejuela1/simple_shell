@@ -7,14 +7,18 @@
  */
 static char *remove_comments(char *line)
 {
-	int i = 0, line_len = 0;
+	int i = 0, line_len = 0, flag = 0;
 	char *new_line = NULL;
 
 	line_len = _strlen(line);
 	for (i = 0; i < line_len; i++)
 	{
-		if (line[i] == *"#")
+		if (line[i] == *" ")
+			flag = 1;
+		else if ((line[i] == *"#" && i == 0) || (line[i] == *"#" && flag))
 			break;
+		if (line[i] != *" ")
+			flag = 0;
 	}
 	if (!i)
 	{
