@@ -8,11 +8,11 @@
 int new_pro(creator_args param)
 {
 	int data_length = 0;
-	char **command = NULL, *en_variable = NULL;
-	char *full_path = NULL;
+	char **command = NULL, *en_variable = NULL, *full_path = NULL;
 	int (*built_infunc)(creator_args, char **, int *);
 	struct stat st;
 
+	*(param.line) = line_parser(*(param.line));
 	param.com_list = command_getter(*(param.line), &param);
 	while (param.com_list)
 	{

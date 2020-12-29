@@ -102,4 +102,5 @@ int print_env(void);
 c_list *command_getter(char *string, creator_args *params);
 char *command_separator(char *string);
 void free_andnext(creator_args *params);
+char *line_parser(char *line);
 #endif
