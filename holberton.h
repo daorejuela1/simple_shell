@@ -15,23 +15,23 @@
 #define UNUSED(x) (void)(x)
 /*Structure definition*/
 /**
- * struct path_dir - singly linked list
- * @str: string with whole folder
- * @len: length of the string
- * @next: points to the next node
+ * struct command_list - singly linked list with commands
+ * @command: command to apply
+ * @data_len: quantity of arguments
+ * @next: pointer to the next command
  *
- * Description: singly linked list node structure
- * for Holberton project
+ * Description: singly linked list node structure for command list
  */
-typedef struct path_dir
+typedef struct command_list
 {
-	char *str;
-	unsigned int len;
-	struct path_dir *next;
-} p_node;
+	char **command;
+	int data_len;
+	struct command_list *next;
+} c_list;
 
 /**
  * struct creator_params - singly linked list
+ * @com_list: actual command being executed
  * @line: pointer that stores what the user writes
  * @counter: counter of shell, shows error in the lines
  * @argv: Entry to program arguments
@@ -43,6 +43,7 @@ typedef struct path_dir
  */
 typedef struct creator_params
 {
+	struct command_list *com_list;
 	char **line;
 	int *counter;
 	char **argv;
@@ -98,4 +99,7 @@ extern char **environ;
 void free_env(void);
 int initialize_env(void);
 int print_env(void);
+c_list *command_getter(char *string, creator_args *params);
+char *command_separator(char *string);
+void free_andnext(creator_args *params);
 #endif

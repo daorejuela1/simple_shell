@@ -13,7 +13,11 @@ int new_pro(creator_args param)
 	int (*built_infunc)(creator_args, char **, int *);
 	struct stat st;
 
-	command = extract_string(*(param.line), &data_length);
+	param.com_list = command_getter(*(param.line), &param);
+	while (param.com_list)
+	{
+	command = param.com_list->command;
+	data_length = param.com_list->data_len;
 	if (command[0] != NULL)
 	{
 		built_infunc = get_op_func(command[0]);
@@ -36,13 +40,11 @@ int new_pro(creator_args param)
 			else if (stat(full_path, &st) == 0 && access(full_path, X_OK) == 0)
 				process_selector(full_path, command, param.status);
 		}
-		free(en_variable);
-		en_variable = NULL;
-		free(full_path);
-		free_grid(command, data_length);
-		data_length = 0;
+		free(en_variable), en_variable = NULL, free(full_path);
+		free_andnext(&param);
 	}
 	else
-		free_grid(command, data_length);
+		free_andnext(&param);
+	}
 	return (*(param.status));
 }

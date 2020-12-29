@@ -33,20 +33,20 @@ int handle_error(creator_args param, char **command, int *data_length)
 		{
 			*(param.status) = _atoi(command[1]);
 			*(param.start) = 0;
-			free_grid(command, *data_length);
+			free_andnext(&param);
 			*data_length = 0;
 			return (*(param.status));
 		}
 		else
 		{
 			state = errno_int(param.argv[0], *(param.counter), command[0], command[1]);
-			free_grid(command, *data_length);
+			free_andnext(&param);
 			*data_length = 0;
 			return (state);
 		}
 	}
 	*(param.start) = 0;
-	free_grid(command, *data_length);
+	free_andnext(&param);
 	*data_length = 0;
 	return (*(param.status));
 }
