@@ -56,7 +56,7 @@ static char *get_value(creator_args param, char *line, struct env_data data)
 		new_word = _calloc(data.end - data.start + 1, 1);
 		if (!new_word)
 			return (NULL);
-		strncpy(new_word, line + data.start + 1, data.end - data.start);
+		_strncpy(new_word, line + data.start + 1, data.end - data.start);
 		*data.word_len = _strlen(new_word);
 		new_env = _getenv(new_word);
 		if (!new_env)
