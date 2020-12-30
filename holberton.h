@@ -62,6 +62,25 @@ typedef struct builtin
 	int (*f)(creator_args, char **, int *);
 } builtin_t;
 
+/**
+ * struct env_data - struct to help with variable expansions
+ * @shell_pid: actual pid of shell
+ * @last_status: last status returned
+ * @word_len: quantity of word to expand
+ * @env_len: variable env result
+ * @start: beginning of variable expansion
+ * @end: end of variable expansion
+ */
+struct env_data
+{
+	pid_t shell_pid;
+	int last_status;
+	int *word_len;
+	int *env_len;
+	int start;
+	int end;
+};
+
 /* Space for function prototypes*/
 int _putchar(char c);
 int _puts(char *s);
@@ -102,5 +121,5 @@ int print_env(void);
 c_list *command_getter(char *string, creator_args *params);
 char *command_separator(char *string);
 void free_andnext(creator_args *params);
-char *line_parser(char *line);
+char *line_parser(creator_args param, char *line);
 #endif
