@@ -118,7 +118,7 @@ static char *expand_variables(creator_args param, char *line)
 			break;
 		}
 	}
-	last_len = data.end - data.start;
+	last_len = line_len - data.end;
 	if ((data.start == -1 && data.end == -1) || data.end == data.start)
 		return (line);
 	new_env = get_value(param, line, data);
@@ -128,7 +128,7 @@ static char *expand_variables(creator_args param, char *line)
 		_strcat(new_line, new_env);
 	free(new_env);
 	if (data.end + 1 != line_len)
-		_strncpy(new_line + data.start + env_len, line + data.end + 1, last_len);
+		_strncpy(new_line + data.start + env_len, line + data.end, last_len);
 	free(line);
 	return (new_line);
 }
