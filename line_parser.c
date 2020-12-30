@@ -112,14 +112,14 @@ static char *expand_variables(creator_args param, char *line)
 		}
 		if (line[i] == *"$")
 			data.start = i;
-		if (data.start && (line[i] == *" " || line[i] == *"\n"))
+		if (data.start >= 0 && (line[i] == *" " || line[i] == *"\n"))
 		{
 			data.end = i;
 			break;
 		}
 	}
 	last_len = data.end - data.start;
-	if (data.start != -1 && data.end != -1)
+	if ((data.start == -1 && data.end == -1) || data.end == data.start)
 		return (line);
 	new_env = get_value(param, line, data);
 	new_line = _calloc(line_len - word_len + env_len + 1, 1);
