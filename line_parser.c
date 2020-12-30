@@ -21,6 +21,8 @@ static char *remove_comments(char *line)
 		if (line[i] != *" ")
 			flag = 0;
 	}
+	if (!flag)
+		return (line);
 	if (!i)
 	{
 		free(line);
