@@ -95,7 +95,7 @@ static char *expand_variables(creator_args param, char *line)
 	int line_len = 0, i = 0, env_len = 0, word_len = 0, last_len = 0;
 	char *new_line = NULL, *new_env = NULL;
 
-	data.start = 0, data.end = 0, data.word_len = &word_len;
+	data.start = -1, data.end = -1, data.word_len = &word_len;
 	data.env_len = &env_len, data.last_status = 0, data.shell_pid = 0;
 	line_len = _strlen(line);
 	for (i = 0; i < line_len; i++)
@@ -119,7 +119,7 @@ static char *expand_variables(creator_args param, char *line)
 		}
 	}
 	last_len = data.end - data.start;
-	if (!data.start && !data.end)
+	if (data.start != -1 && data.end != -1)
 		return (line);
 	new_env = get_value(param, line, data);
 	new_line = _calloc(line_len - word_len + env_len + 1, 1);
