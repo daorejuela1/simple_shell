@@ -8,12 +8,14 @@
  */
 static char *remove_comments(char *line)
 {
-	int i = 0, line_len = 0, flag = 0;
+	int i = 0, line_len = 0, flag = 0, comment = 0;
 	char *new_line = NULL;
 
 	line_len = _strlen(line);
 	for (i = 0; i < line_len; i++)
 	{
+		if (line[i] == *"#")
+			comment = 1;
 		if (line[i] == *" ")
 			flag = 1;
 		else if ((line[i] == *"#" && i == 0) || (line[i] == *"#" && flag))
@@ -21,7 +23,7 @@ static char *remove_comments(char *line)
 		if (line[i] != *" ")
 			flag = 0;
 	}
-	if (!flag)
+	if (!comment)
 		return (line);
 	if (!i)
 	{
@@ -145,6 +147,7 @@ static char *expand_variables(creator_args param, char *line)
 char *line_parser(creator_args param, char *line)
 {
 	line = remove_comments(line);
-	line = expand_variables(param, line);
+	if (line)
+		line = expand_variables(param, line);
 	return (line);
 }
