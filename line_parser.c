@@ -100,14 +100,16 @@ static char *expand_variables(creator_args param, char *line)
 	line_len = _strlen(line);
 	for (i = 0; i < line_len; i++)
 	{
+		if (i != line_len - 1 && line[i] == *"$" && line[i + 1] == *" ")
+			break;
 		if (i != line_len - 1 && line[i] == *"$" && line[i + 1] == *"$")
 		{
-			data.start = i, data.end = i + 1, data.shell_pid = getpid();
+			data.start = i, data.end = i + 3, data.shell_pid = getpid();
 			break;
 		}
 		if (i != line_len - 1 && line[i] == *"$" && line[i + 1] == *"?")
 		{
-			data.start = i, data.end = i + 1, data.last_status = 1;
+			data.start = i, data.end = i + 3, data.last_status = 1;
 			break;
 		}
 		if (line[i] == *"$")
@@ -118,16 +120,14 @@ static char *expand_variables(creator_args param, char *line)
 			break;
 		}
 	}
-	last_len = line_len - data.end;
 	if ((data.start == -1 && data.end == -1) || data.end == data.start)
 		return (line);
-	new_env = get_value(param, line, data);
+	new_env = get_value(param, line, data), last_len = line_len - data.end;
 	new_line = _calloc(line_len - word_len + env_len + 1, 1);
 	_strncpy(new_line, line, data.start);
 	if (new_env)
-		_strcat(new_line, new_env);
-	free(new_env);
-	if (data.end + 1 != line_len)
+		_strcat(new_line, new_env), free(new_env);
+	if (data.end != line_len)
 		_strncpy(new_line + data.start + env_len, line + data.end, last_len);
 	free(line);
 	return (new_line);
