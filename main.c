@@ -14,7 +14,7 @@ int main(int argc, char *argv[])
 	creator_args c_args;
 
 	signal(SIGINT, handler_ctrlc), initialize_env();
-	c_args.line = &line, c_args.argv = argv;
+	c_args.line = &line, c_args.argv = argv, c_args.aliases = NULL;
 	c_args.counter = &counter, c_args.start = &start, c_args.status = &status;
 	if (argc > 1)
 		errno_lin_st(argv[0], argv[1]);
@@ -33,7 +33,7 @@ int main(int argc, char *argv[])
 			if (_strcmp(line, "env\n") == 0)
 				print_env();
 			else
-				new_pro(c_args);
+				new_pro(&c_args);
 		}
 	}
 	else
@@ -41,10 +41,11 @@ int main(int argc, char *argv[])
 		while ((read = getline(&line, &len, stdin)) != EOF)
 		{
 			counter++; /*non interactive mode*/
-			status = (_strcmp(line, "env\n") == 0) ? print_env() : new_pro(c_args);
+			status = (_strcmp(line, "env\n") == 0) ? print_env() : new_pro(&c_args);
 		}
 	}
 	free(line);
 	free_env();
+	alias_free(c_args);
 	return (status);
 }

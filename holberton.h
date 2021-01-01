@@ -44,6 +44,7 @@ typedef struct command_list
 typedef struct creator_params
 {
 	struct command_list *com_list;
+	struct alias *aliases;
 	char **line;
 	int *counter;
 	char **argv;
@@ -59,7 +60,7 @@ typedef struct creator_params
 typedef struct builtin
 {
 	char *command;
-	int (*f)(creator_args, char **, int *);
+	int (*f)(creator_args *, char **, int *);
 } builtin_t;
 
 /**
@@ -81,6 +82,19 @@ struct env_data
 	int end;
 };
 
+/**
+ * struct alias - struct to define the alias variables
+ * @name: actual name of the alias
+ * @value: value of the actual name
+ * @next: pointer to the next structure
+ */
+typedef struct alias
+{
+	char *name;
+	char *value;
+	struct alias *next;
+} alias_l;
+
 /* Space for function prototypes*/
 int _putchar(char c);
 int _puts(char *s);
@@ -100,16 +114,16 @@ int errno_per(char *name, int line, char *error);
 int errno_found(char *name, int line, char *error);
 char *path_searcher(char **command, char *env);
 char *_getenv(const char *name);
-int new_pro(creator_args param);
+int new_pro(creator_args *param);
 int _atoi(char *s);
 void handler_ctrlc(int sig);
 int isNumber(char *s);
 int errno_int(char *name, int line, char *error, char *code);
-int handle_error(creator_args param, char **command, int *data_length);
+int handle_error(creator_args *param, char **command, int *data_length);
 int str_srch(char *array, char charac);
-int (*get_op_func(char *string))(creator_args, char **, int *);
-int _unsetenv(creator_args param, char **command, int *data_length);
-int _setenv(creator_args param, char **command, int *data_length);
+int (*get_op_func(char *string))(creator_args *, char **, int *);
+int _unsetenv(creator_args *param, char **command, int *data_length);
+int _setenv(creator_args *param, char **command, int *data_length);
 int initialize_env(void);
 int _strncmp(char *p1, char *p2, int n);
 void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size);
@@ -122,4 +136,7 @@ c_list *command_getter(char *string, creator_args *params);
 char *command_separator(char *string);
 void free_andnext(creator_args *params);
 char *line_parser(creator_args param, char *line);
+int alias_logic(creator_args *param, char **command, int *data_length);
+void alias_free(creator_args param);
+void replace_aliases(creator_args param);
 #endif

@@ -8,7 +8,7 @@
  *
  * Return: 0 on success and -1 in any error case
  */
-int _unsetenv(creator_args param, char **command, int *data_length)
+int _unsetenv(creator_args *param, char **command, int *data_length)
 {
 	char **new_environ = NULL, *name = NULL;
 	size_t len;
@@ -18,7 +18,7 @@ int _unsetenv(creator_args param, char **command, int *data_length)
 	name = command[1];
 	if (name == NULL || name[0] == '\0' || str_srch(name, '=') != -1)
 	{
-		free_andnext(&param);
+		free_andnext(param);
 		return (-1);
 	}
 	if (!environ)
@@ -45,7 +45,7 @@ int _unsetenv(creator_args param, char **command, int *data_length)
 	free(environ);
 	environ = new_environ;
 	environ[j] = 0;
-	free_andnext(&param);
+	free_andnext(param);
 	return (0);
 }
 
@@ -57,7 +57,7 @@ int _unsetenv(creator_args param, char **command, int *data_length)
  *
  * Return: 0 if succes or -1 if error found
  */
-int _setenv(creator_args param, char **command, int *data_length)
+int _setenv(creator_args *param, char **command, int *data_length)
 {
 	char *new_word, **new_environ, *name = NULL, *value = NULL;
 	int env_vars = 0, len = 0;
@@ -65,13 +65,13 @@ int _setenv(creator_args param, char **command, int *data_length)
 	UNUSED(data_length), UNUSED(param), name = command[1];
 	if (name == NULL || name[0] == '\0' || str_srch(name, '=') != -1)
 	{
-		free_andnext(&param);
+		free_andnext(param);
 		return (-1);
 	}
 	value = command[2];
 	if (!value)
 	{
-		free_andnext(&param);
+		free_andnext(param);
 		return (-1);
 	}
 	len = _strlen(name);
@@ -85,7 +85,7 @@ int _setenv(creator_args param, char **command, int *data_length)
 		{
 			free(environ[env_vars]);
 			environ[env_vars] = new_word;
-			free_andnext(&param);
+			free_andnext(param);
 			return (0);
 		}
 	}
@@ -96,7 +96,7 @@ int _setenv(creator_args param, char **command, int *data_length)
 	new_environ[env_vars] = new_word;
 	new_environ[env_vars + 1] = 0;
 	environ = new_environ;
-	free_andnext(&param);
+	free_andnext(param);
 	return (0);
 }
 

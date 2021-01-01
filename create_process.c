@@ -2,49 +2,49 @@
 /**
  *new_pro - executes the shell main logic checking
  *if a file is worth
- *@param: structure with all arguments
+ *@arg: structure with all arguments
  *Return: modified path or null if failed
  */
-int new_pro(creator_args param)
+int new_pro(creator_args *arg)
 {
 	int data_length = 0;
 	char **command = NULL, *en_variable = NULL, *full_path = NULL;
-	int (*built_infunc)(creator_args, char **, int *);
+	int (*built_infunc)(creator_args *, char **, int *);
 	struct stat st;
 
-	*(param.line) = line_parser(param, *(param.line));
-	param.com_list = command_getter(*(param.line), &param);
-	while (param.com_list)
+	*(arg->line) = line_parser(*arg, *(arg->line));
+	arg->com_list = command_getter(*(arg->line), arg);
+	while (arg->com_list)
 	{
-	command = param.com_list->command;
-	data_length = param.com_list->data_len;
+	replace_aliases(*arg), command = arg->com_list->command;
+	data_length = arg->com_list->data_len;
 	if (command[0] != NULL)
 	{
 		built_infunc = get_op_func(command[0]);
 		if (built_infunc != NULL)
-			return (built_infunc(param, command, &data_length));
+			return (built_infunc(arg, command, &data_length));
 		en_variable = _getenv("PATH");
 		if (stat(command[0], &st) == 0
 				&& access(command[0], X_OK) == 0 &&
 				(en_variable || str_srch(command[0], '/') != -1))
-			process_selector(command[0], command, param.status);
+			process_selector(command[0], command, arg->status);
 		else if (stat(command[0], &st) == 0 && access(command[0], X_OK) != 0)
-			*(param.status) = errno_per(param.argv[0], *(param.counter), command[0]);
+			*(arg->status) = errno_per(arg->argv[0], *(arg->counter), command[0]);
 		else
 		{
 			full_path = path_searcher(command, en_variable);
 			if (full_path == NULL)
-				*(param.status) = errno_found(param.argv[0], *(param.counter), command[0]);
+				*(arg->status) = errno_found(arg->argv[0], *(arg->counter), command[0]);
 			else if (stat(full_path, &st) == 0 && access(full_path, X_OK) != 0)
-				*(param.status) = errno_per(param.argv[0], *(param.counter), command[0]);
+				*(arg->status) = errno_per(arg->argv[0], *(arg->counter), command[0]);
 			else if (stat(full_path, &st) == 0 && access(full_path, X_OK) == 0)
-				process_selector(full_path, command, param.status);
+				process_selector(full_path, command, arg->status);
 		}
 		free(en_variable), en_variable = NULL, free(full_path);
-		free_andnext(&param);
+		free_andnext(arg);
 	}
 	else
-		free_andnext(&param);
+		free_andnext(arg);
 	}
-	return (*(param.status));
+	return (*(arg->status));
 }

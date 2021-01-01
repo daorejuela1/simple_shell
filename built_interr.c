@@ -18,12 +18,12 @@ int isNumber(char *s)
 
 /**
 * handle_error - handle exit behavior and error output
-* @param: structure with the run state
+* @arg: structure with the run state
 * @command: user input
 * @data_length: command length
 * Return: error code 2 or previous if no new error
 */
-int handle_error(creator_args param, char **command, int *data_length)
+int handle_error(creator_args *arg, char **command, int *data_length)
 {
 	int state;
 
@@ -31,22 +31,22 @@ int handle_error(creator_args param, char **command, int *data_length)
 	{
 		if (isNumber(command[1]))
 		{
-			*(param.status) = _atoi(command[1]);
-			*(param.start) = 0;
-			free_andnext(&param);
+			*(arg->status) = _atoi(command[1]);
+			*(arg->start) = 0;
+			free_andnext(arg);
 			*data_length = 0;
-			return (*(param.status));
+			return (*(arg->status));
 		}
 		else
 		{
-			state = errno_int(param.argv[0], *(param.counter), command[0], command[1]);
-			free_andnext(&param);
+			state = errno_int(arg->argv[0], *(arg->counter), command[0], command[1]);
+			free_andnext(arg);
 			*data_length = 0;
 			return (state);
 		}
 	}
-	*(param.start) = 0;
-	free_andnext(&param);
+	*(arg->start) = 0;
+	free_andnext(arg);
 	*data_length = 0;
-	return (*(param.status));
+	return (*(arg->status));
 }
