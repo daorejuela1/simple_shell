@@ -93,7 +93,7 @@ char *split_line(int index)
 	}
 	else
 	{
-		temp = malloc(NEW_SIZE);
+		temp = _calloc(NEW_SIZE, 1);
 		_strncpy(temp, output + index + 1, _strlen(output + index + 1));
 		free(output);
 		output = temp;
