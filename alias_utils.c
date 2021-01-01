@@ -124,7 +124,7 @@ static int create_alias(creator_args *param, char **command, int *data_length)
 		_strncpy(name, left, _strlen(left));
 		right = strtok(NULL, delim);
 		value = _calloc(_strlen(right) + 1, 1);
-		_strncpy(value, right, _strlen(left));
+		_strncpy(value, right, _strlen(right));
 		if (replace_value(&param->aliases, name, value) == -1)
 			alist_insert(&param->aliases, name, value);
 	}
