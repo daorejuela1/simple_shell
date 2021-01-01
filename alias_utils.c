@@ -31,7 +31,7 @@ static int print_alias(creator_args *param, char **command, int *data_length)
 			while (temp)
 			{
 				if (_strcmp(command[i], temp->name) == 0)
-					printf("alias %s='%s'\n", temp->name, temp->value);
+					printf("%s='%s'\n", temp->name, temp->value);
 				temp = temp->next;
 			}
 		}
@@ -123,7 +123,7 @@ static int create_alias(creator_args *param, char **command, int *data_length)
 		name = _calloc(_strlen(left) + 1, 1);
 		_strncpy(name, left, _strlen(left));
 		right = strtok(NULL, delim);
-		value = _calloc(_strlen(left) + 1, 1);
+		value = _calloc(_strlen(right) + 1, 1);
 		_strncpy(value, right, _strlen(left));
 		if (replace_value(&param->aliases, name, value) == -1)
 			alist_insert(&param->aliases, name, value);
