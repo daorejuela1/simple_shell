@@ -140,5 +140,7 @@ char *line_parser(creator_args param, char *line);
 int alias_logic(creator_args *param, char **command, int *data_length);
 void alias_free(creator_args param);
 void replace_aliases(creator_args param);
+void open_file(creator_args *param, char *argv[]);
 int print_allias(creator_args *param, char **command, int *data_length);
+char *_getline(const int fd);
 #endif
