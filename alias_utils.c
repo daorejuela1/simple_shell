@@ -19,7 +19,7 @@ static int print_alias(creator_args *param, char **command, int *data_length)
 	{
 		while (temp)
 		{
-			printf("alias %s='%s'\n", temp->name, temp->value);
+			printf("%s='%s'\n", temp->name, temp->value);
 			temp = temp->next;
 		}
 	}
