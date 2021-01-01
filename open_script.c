@@ -7,7 +7,7 @@
  *
  * Returns: Nothing
  */
-void open_file(creator_args *arg, char *argv[])
+int open_file(creator_args *arg, char *argv[])
 {
 	int fd = 0;
 	char *line = NULL;
@@ -15,7 +15,7 @@ void open_file(creator_args *arg, char *argv[])
 	arg->line = &line;
 	fd = open(argv[1], 0);
 	if (fd == -1)
-		errno_lin_st(argv[0], argv[1]);
+		return (errno_lin_st(argv[0], argv[1]));
 	while ((line = _getline(fd)))
 	{
 	arg->counter++; /*non interactive mode*/
@@ -23,4 +23,5 @@ void open_file(creator_args *arg, char *argv[])
 	free(line);
 	}
 	close(fd);
+	return (*arg->status);
 }

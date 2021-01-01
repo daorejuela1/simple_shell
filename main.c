@@ -17,7 +17,7 @@ int main(int argc, char *argv[])
 	c_args.line = &line, c_args.argv = argv, c_args.aliases = NULL;
 	c_args.counter = &counter, c_args.start = &start, c_args.status = &status;
 	if (argc > 1)
-		open_file(&c_args, argv);
+		status = open_file(&c_args, argv);
 	else if (isatty(STDIN_FILENO))
 	{
 		while (start) /*interactive mode*/

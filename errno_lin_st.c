@@ -5,7 +5,7 @@
  * @name: The string of err_message
  * Return: Nothing
  */
-void errno_lin_st(char *name, char *error)
+int errno_lin_st(char *name, char *error)
 {
 	char *err_message;
 	int data_len = 0;
@@ -14,14 +14,14 @@ void errno_lin_st(char *name, char *error)
 	data_len = _strlen(name) + _strlen(error) + _strlen(message);
 	err_message = _calloc(data_len + 2, 1);
 	if (err_message == NULL)
-		return;
+		return (-1);
 	_strncpy(err_message, name, _strlen(name));
 	_strcat(err_message, message);
 	_strcat(err_message, error);
 	_strcat(err_message, "\n");
 	write(STDERR_FILENO, err_message, _strlen(err_message));
 	free(err_message);
-	exit(127);
+	return(127);
 }
 
 /**

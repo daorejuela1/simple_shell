@@ -110,7 +110,7 @@ int _strlen(char *s);
 char *_strcat(char *dest, char *src);
 char *c_number_to_arr(char *array_data, int n);
 unsigned int cal_digits(unsigned int n);
-void errno_lin_st(char *name, char *error);
+int errno_lin_st(char *name, char *error);
 int errno_per(char *name, int line, char *error);
 int errno_found(char *name, int line, char *error);
 char *path_searcher(char **command, char *env);
@@ -140,7 +140,7 @@ char *line_parser(creator_args param, char *line);
 int alias_logic(creator_args *param, char **command, int *data_length);
 void alias_free(creator_args param);
 void replace_aliases(creator_args param);
-void open_file(creator_args *param, char *argv[]);
+int open_file(creator_args *param, char *argv[]);
 int print_allias(creator_args *param, char **command, int *data_length);
 char *_getline(const int fd);
 #endif
