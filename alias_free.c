@@ -19,6 +19,32 @@ void alias_free(creator_args param)
 		param.aliases = temp;
 	}
 }
+/**
+ * print_allias - prints the linked list containing the alias information
+ * @param: structure with the used variables
+ * @command: array of array with the input commands
+ * @data_length: quantity of commands as input
+ *
+ * Return: 0 on success and -1 in any error case
+ */
+int print_allias(creator_args *param, char **command, int *data_length)
+{
+	alias_l *temp = NULL;
+
+	UNUSED(command);
+	UNUSED(data_length);
+	temp = param->aliases;
+	if (*data_length == 1)
+	{
+		while (temp)
+		{
+			printf("%s='%s'\n", temp->name, temp->value);
+			temp = temp->next;
+		}
+	}
+	return (0);
+}
+
 
 /**
  * replace_aliases - replace the command with the corresponding alias if found

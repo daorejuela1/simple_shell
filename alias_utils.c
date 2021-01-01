@@ -7,35 +7,18 @@
  *
  * Return: 0 on success and -1 in any error case
  */
-static int print_alias(creator_args *param, char **command, int *data_length)
+static int print_alias(creator_args *param, char *command, int *data_length)
 {
 	alias_l *temp = NULL;
-	int i = 0;
 
 	UNUSED(command);
 	UNUSED(data_length);
 	temp = param->aliases;
-	if (*data_length == 1)
+	while (temp)
 	{
-		while (temp)
-		{
+		if (_strcmp(command, temp->name) == 0)
 			printf("%s='%s'\n", temp->name, temp->value);
-			temp = temp->next;
-		}
-	}
-	else
-	{
-		for (i = 1; i < *data_length; i++)
-		{
-			temp = param->aliases;
-			while (temp)
-			{
-				if (_strcmp(command[i], temp->name) == 0)
-					printf("%s='%s'\n", temp->name, temp->value);
-				temp = temp->next;
-			}
-		}
-
+		temp = temp->next;
 	}
 	return (0);
 }
@@ -108,26 +91,21 @@ static alias_l *alist_insert(alias_l **head, char *name, char *value)
  * create_alias - creates a new alias
  * @param: structure with the used variables
  * @command: array of array with the input commands
- * @data_length: quantity of commands as input
  *
  * Return: 0 on success and -1 in any error case
  */
-static int create_alias(creator_args *param, char **command, int *data_length)
+static int create_alias(creator_args *param, char *command)
 {
-	int i = 0;
 	char *delim = "=", *name = NULL, *value = NULL, *left = NULL, *right = NULL;
 
-	for (i = 1; i < *data_length; i++)
-	{
-		left = strtok(command[i], delim);
-		name = _calloc(_strlen(left) + 1, 1);
-		_strncpy(name, left, _strlen(left));
-		right = strtok(NULL, delim);
-		value = _calloc(_strlen(right) + 1, 1);
-		_strncpy(value, right, _strlen(right));
-		if (replace_value(&param->aliases, name, value) == -1)
-			alist_insert(&param->aliases, name, value);
-	}
+	left = strtok(command, delim);
+	name = _calloc(_strlen(left) + 1, 1);
+	_strncpy(name, left, _strlen(left));
+	right = strtok(NULL, delim);
+	value = _calloc(_strlen(right) + 1, 1);
+	_strncpy(value, right, _strlen(right));
+	if (replace_value(&param->aliases, name, value) == -1)
+		alist_insert(&param->aliases, name, value);
 	return (0);
 }
 
@@ -142,10 +120,20 @@ static int create_alias(creator_args *param, char **command, int *data_length)
  */
 int alias_logic(creator_args *param, char **command, int *data_length)
 {
-	if (!command[1] || str_srch(command[1], '=') == -1)
-		print_alias(param, command, data_length);
+	int i = 0;
+
+	if (*data_length == 1)
+		print_allias(param, command, data_length);
 	else
-		create_alias(param, command, data_length);
+	{
+		for (i = 1; i < *data_length; i++)
+		{
+			if (str_srch(command[i], '=') != -1)
+				create_alias(param, command[i]);
+			else
+				print_alias(param, command[i], data_length);
+		}
+	}
 	free_andnext(param);
 	return (0);
 }

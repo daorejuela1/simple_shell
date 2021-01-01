@@ -32,6 +32,7 @@ typedef struct command_list
 /**
  * struct creator_params - singly linked list
  * @com_list: actual command being executed
+ * @aliases: pointer that store all the shell aliases
  * @line: pointer that stores what the user writes
  * @counter: counter of shell, shows error in the lines
  * @argv: Entry to program arguments
@@ -139,4 +140,5 @@ char *line_parser(creator_args param, char *line);
 int alias_logic(creator_args *param, char **command, int *data_length);
 void alias_free(creator_args param);
 void replace_aliases(creator_args param);
+int print_allias(creator_args *param, char **command, int *data_length);
 #endif
