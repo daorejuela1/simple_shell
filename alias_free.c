@@ -30,17 +30,22 @@ void replace_aliases(creator_args param)
 {
 	alias_l *temp = NULL;
 	char *new_string = NULL;
+	int repeat = 0;
 
+	do {
 	temp = param.aliases;
+	repeat = 0;
 	while (temp)
 	{
 		if (_strcmp(temp->name, param.com_list->command[0]) == 0)
 		{
 			free(param.com_list->command[0]);
 			new_string = _calloc(_strlen(temp->value) + 1, 1);
-			strncpy(new_string, temp->value, _strlen(temp->value));
+			_strncpy(new_string, temp->value, _strlen(temp->value));
 			param.com_list->command[0] = new_string;
+			repeat = 1;
 		}
 		temp = temp->next;
 	}
+	} while (repeat == 1);
 }
