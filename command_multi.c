@@ -1,24 +1,45 @@
 #include "holberton.h"
 static int command_end;
-
+static token tokens[] = {
+		{"&&", AND_COMP, 2},
+		{"||", OR_COMP, 2},
+		{";", LAST_COM, 1},
+	};
 /**
  *command_separator - gets the commands to do separed by ;
  *@string: Input line from the user
+ *@status: Node operation
  *Return: Always double pointer with commands
  */
-char *command_separator(char *string)
+char *command_separator(char *string, int *status)
 {
 	char *line = NULL;
-	int i = 0;
+	int i = 0, j = 0, word_len = 0, offset = 1, end_here = 0;
 
 	if (!string)
 		return (NULL);
-	for (i = command_end; i < _strlen(string); i++)
+	word_len = _strlen(string);
+	for (i = command_end; i < word_len; i++)
 	{
-		if (string[i] == *";")
+		end_here = 0;
+		for (j = 0; j < 3; j++)
 		{
-			break;
+			if (tokens[j].len == 2 && string[i] == *tokens[j].symbol)
+			{
+				if (i != word_len - 1 && string[i + 1] == *(tokens[j].symbol + 1))
+				{
+					end_here = 1, *status = tokens[j].status, offset = tokens[j].len;
+					break;
+				}
+			}
+			else if (tokens[j].len == 1 && string[i] == *tokens[j].symbol)
+			{
+				end_here = 1, *status = tokens[j].status, offset = tokens[j].len;
+				break;
+			}
 		}
+		if (end_here)
+			break;
 	}
 	if (i == command_end)
 		return (NULL);
@@ -26,7 +47,7 @@ char *command_separator(char *string)
 	if (!line)
 		return (NULL);
 	line = _strncpy(line, string + command_end, i - command_end);
-	command_end = i + 1;
+	command_end = i + offset;
 	return (line);
 }
 
@@ -40,10 +61,10 @@ c_list *command_getter(char *string, creator_args *params)
 {
 	c_list *new_command = NULL, *initial = NULL;
 	char *line = NULL;
-	int counter = 0, data_len = 0;
+	int counter = 0, data_len = 0, status = 0;
 
 	command_end = 0;
-	while ((line = command_separator(string)))
+	while ((line = command_separator(string, &status)))
 	{
 		free(line);
 		new_command = malloc(sizeof(c_list));
@@ -64,11 +85,12 @@ c_list *command_getter(char *string, creator_args *params)
 	}
 	command_end = 0;
 	params->com_list = initial;
-	while ((line = command_separator(string)))
+	while ((line = command_separator(string, &status)))
 	{
 		data_len = 0;
 		params->com_list->command = extract_string(line, &data_len);
 		(params->com_list)->data_len = data_len;
+		(params->com_list)->status = status;
 		free(line);
 		params->com_list = params->com_list->next;
 	}

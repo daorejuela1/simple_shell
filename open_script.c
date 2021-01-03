@@ -5,7 +5,7 @@
  * @arg: structure that contains the aliases
  * @argv: arguments taken as input for the program
  *
- * Returns: Nothing
+ * Return: Nothing
  */
 int open_file(creator_args *arg, char *argv[])
 {

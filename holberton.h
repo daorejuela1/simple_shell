@@ -13,11 +13,30 @@
 #include <errno.h>
 
 #define UNUSED(x) (void)(x)
+#define AND_COMP 2
+#define OR_COMP  1
+#define LAST_COM 0
 /*Structure definition*/
+/**
+ * struct token_search - structure to define the token searcher
+ * @symbol: symbol that represents the token
+ * @status: status to represent the token action
+ * @len: quantity of characters in the token
+ *
+ * Description: singly linked list node structure for command list
+ */
+typedef struct token_search
+{
+	char *symbol;
+	int status;
+	int len;
+} token;
+
 /**
  * struct command_list - singly linked list with commands
  * @command: command to apply
  * @data_len: quantity of arguments
+ * @status: status to represent the token action
  * @next: pointer to the next command
  *
  * Description: singly linked list node structure for command list
@@ -27,6 +46,7 @@ typedef struct command_list
 	char **command;
 	int data_len;
 	struct command_list *next;
+	int status;
 } c_list;
 
 /**
@@ -134,7 +154,7 @@ void free_env(void);
 int initialize_env(void);
 int print_env(void);
 c_list *command_getter(char *string, creator_args *params);
-char *command_separator(char *string);
+char *command_separator(char *string, int *status);
 void free_andnext(creator_args *params);
 char *line_parser(creator_args param, char *line);
 int alias_logic(creator_args *param, char **command, int *data_length);
@@ -143,4 +163,7 @@ void replace_aliases(creator_args param);
 int open_file(creator_args *param, char *argv[]);
 int print_allias(creator_args *param, char **command, int *data_length);
 char *_getline(const int fd);
+int execute_command(creator_args *arg);
+void and_logic(creator_args *arg);
+void or_logic(creator_args *arg);
 #endif

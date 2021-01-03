@@ -7,15 +7,39 @@
  */
 int new_pro(creator_args *arg)
 {
+	*(arg->line) = line_parser(*arg, *(arg->line));
+	arg->com_list = command_getter(*(arg->line), arg);
+	while (arg->com_list)
+	{
+		switch (arg->com_list->status)
+		{
+		case LAST_COM:
+			execute_command(arg);
+			break;
+		case AND_COMP:
+			and_logic(arg);
+			break;
+		case OR_COMP:
+			or_logic(arg);
+			break;
+		}
+	}
+	return (*(arg->status));
+}
+
+/**
+ * execute_command - search in the path and executes desired command
+ * @arg: structure with all the arguments
+ *
+ * Return: status of the executed command
+ */
+int execute_command(creator_args *arg)
+{
 	int data_length = 0;
 	char **command = NULL, *en_variable = NULL, *full_path = NULL;
 	int (*built_infunc)(creator_args *, char **, int *);
 	struct stat st;
 
-	*(arg->line) = line_parser(*arg, *(arg->line));
-	arg->com_list = command_getter(*(arg->line), arg);
-	while (arg->com_list)
-	{
 	replace_aliases(*arg), command = arg->com_list->command;
 	data_length = arg->com_list->data_len;
 	if (command[0] != NULL)
@@ -45,6 +69,5 @@ int new_pro(creator_args *arg)
 	}
 	else
 		free_andnext(arg);
-	}
 	return (*(arg->status));
 }

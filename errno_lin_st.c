@@ -21,7 +21,7 @@ int errno_lin_st(char *name, char *error)
 	_strcat(err_message, "\n");
 	write(STDERR_FILENO, err_message, _strlen(err_message));
 	free(err_message);
-	return(127);
+	return (127);
 }
 
 /**
