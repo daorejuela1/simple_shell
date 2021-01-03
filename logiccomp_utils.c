@@ -8,9 +8,9 @@
  */
 void and_logic(creator_args *arg)
 {
-	if (*arg->status == 0)
-		execute_command(arg);
-	else
+	int status = 0;
+		status = execute_command(arg);
+	if (status != 0)
 	{
 		while (arg->com_list && arg->com_list->status == AND_COMP)
 			free_andnext(arg);
