@@ -99,7 +99,8 @@ int cd_logic(creator_args *arg, char **command, int *data_length)
 			status = 0;
 		else
 		{
-			printf("%s\n", old_pwd);
+			write(STDOUT_FILENO, old_pwd, _strlen(old_pwd));
+			write(STDOUT_FILENO, "\n", 1);
 			status = change_dir(arg, old_pwd);
 			free(old_pwd);
 		}
