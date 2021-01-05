@@ -13,10 +13,11 @@ int (*get_op_func(char *string))(creator_args *, char **, int *)
 	{"setenv", _setenv},
 	{"unsetenv", _unsetenv},
 	{"alias", alias_logic},
+	{"cd", cd_logic},
 	{NULL, NULL}
 	};
 
-	for (i = 0; i < 4; i++)
+	for (i = 0; i < 5; i++)
 	{
 		if (_strcmp(string, command[i].command) == 0)
 			return (command[i].f);
