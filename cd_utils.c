@@ -96,14 +96,11 @@ int cd_logic(creator_args *arg, char **command, int *data_length)
 	{
 		old_pwd = _getenv("OLDPWD");
 		if (!old_pwd)
-			status = 0;
-		else
-		{
-			write(STDOUT_FILENO, old_pwd, _strlen(old_pwd));
-			write(STDOUT_FILENO, "\n", 1);
-			status = change_dir(arg, old_pwd);
-			free(old_pwd);
-		}
+			old_pwd = _getenv("PWD");
+		write(STDOUT_FILENO, old_pwd, _strlen(old_pwd));
+		write(STDOUT_FILENO, "\n", 1);
+		status = change_dir(arg, old_pwd);
+		free(old_pwd);
 	}
 	else
 	{
