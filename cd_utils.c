@@ -17,9 +17,8 @@ static int change_dir(creator_args *arg, char *path)
 	{
 		getcwd(old_pwd, 512);
 		chdir(path);
-		_putenv("PWD", path);
-		_putenv("OLDPWD", old_pwd);
-		printf("%s\n", path);
+		_envset_val("PWD", path);
+		_envset_val("OLDPWD", old_pwd);
 	}
 	else if (stat(path, &st) == 0 && access(path, X_OK) != 0)
 	{
@@ -33,13 +32,13 @@ static int change_dir(creator_args *arg, char *path)
 }
 
 /**
- * _putenv - overwrites or create a new variable with the value
+ * _envset_val - overwrites or create a new variable with the value
  * @name: name of the environment variable
  * @value: value of the environment variable
  *
  * Return: 0 if succes or -1 if error found
  */
-int _putenv(char *name, char *value)
+int _envset_val(char *name, char *value)
 {
 	int len = 0, env_vars = 0;
 	char *new_word = NULL, **new_environ = NULL;
@@ -86,7 +85,7 @@ int cd_logic(creator_args *arg, char **command, int *data_length)
 	{
 		home_directory = _getenv("HOME");
 		if (!home_directory)
-			status = errno_per("-bash: cd:", *(arg->counter), "ok");
+			status = 0;
 		else
 		{
 			status = (change_dir(arg, home_directory));
@@ -97,7 +96,7 @@ int cd_logic(creator_args *arg, char **command, int *data_length)
 	{
 		old_pwd = _getenv("OLDPWD");
 		if (!old_pwd)
-			status = errno_per("-bash: cd:", *(arg->counter), "ok");
+			status = 0;
 		else
 		{
 			status = change_dir(arg, old_pwd);

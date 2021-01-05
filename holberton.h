@@ -166,7 +166,7 @@ char *_getline(const int fd);
 int execute_command(creator_args *arg);
 void and_logic(creator_args *arg);
 void or_logic(creator_args *arg);
-int _putenv(char *name, char *value);
+int _envset_val(char *name, char *value);
 int cd_logic(creator_args *param, char **command, int *data_length);
 int errno_cust(char *name, int line, char *error, char *message, int code);
 #endif
