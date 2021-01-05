@@ -162,7 +162,7 @@ int errno_cust(char *name, int line, char *error, char *message, int code)
 		position++;
 	}
 	data_len = _strlen(name) + _strlen(error) + _strlen(message);
-	err_message = _calloc(data_len + 5 + position, 1);
+	err_message = _calloc(data_len + 6 + position, 1);
 	if (err_message == NULL)
 		return (0);
 	storage_array = _calloc(position + 1, 1);
@@ -172,8 +172,9 @@ int errno_cust(char *name, int line, char *error, char *message, int code)
 	_strcat(err_message, ": ");
 	_strcat(err_message, c_number_to_arr(storage_array, line));
 	_strcat(err_message, ": ");
-	_strcat(err_message, error);
 	_strcat(err_message, message);
+	_strcat(err_message, error);
+	_strcat(err_message, "\n");
 	write(STDERR_FILENO, err_message, _strlen(err_message));
 	free(err_message);
 	free(storage_array);

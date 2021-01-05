@@ -26,7 +26,7 @@ static int change_dir(creator_args *arg, char *path)
 	}
 	else
 	{
-		return (errno_cust("cd", line, path, " No such file or directory\n", 2));
+		return (errno_cust(arg->argv[0], line, path, "cd: can't cd to ", 0));
 	}
 	return (0);
 }
@@ -99,6 +99,7 @@ int cd_logic(creator_args *arg, char **command, int *data_length)
 			status = 0;
 		else
 		{
+			printf("%s\n", old_pwd);
 			status = change_dir(arg, old_pwd);
 			free(old_pwd);
 		}
