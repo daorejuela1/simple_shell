@@ -25,7 +25,7 @@ int isNumber(char *s)
 */
 int handle_error(creator_args *arg, char **command, int *data_length)
 {
-	int state;
+	int state = 0;
 
 	if (command[1] != NULL)
 	{
@@ -40,6 +40,7 @@ int handle_error(creator_args *arg, char **command, int *data_length)
 		else
 		{
 			state = errno_int(arg->argv[0], *(arg->counter), command[0], command[1]);
+			*(arg->status) = state;
 			free_andnext(arg);
 			*data_length = 0;
 			return (state);
