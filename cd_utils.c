@@ -80,20 +80,29 @@ int _putenv(char *name, char *value)
 int cd_logic(creator_args *arg, char **command, int *data_length)
 {
 	int status = 0;
+	char *home_directory = NULL, *old_pwd = NULL;
 
 	if (*data_length == 1 || *command[1] == '~')
 	{
-		if (!_getenv("HOME"))
+		home_directory = _getenv("HOME");
+		if (!home_directory)
 			status = errno_per("-bash: cd:", *(arg->counter), "ok");
 		else
-			status = (change_dir(arg, _getenv("HOME")));
+		{
+			status = (change_dir(arg, home_directory));
+			free(home_directory);
+		}
 	}
 	else if (*command[1] == '-')
 	{
-		if (!_getenv("OLDPWD"))
+		old_pwd = _getenv("OLDPWD");
+		if (!old_pwd)
 			status = errno_per("-bash: cd:", *(arg->counter), "ok");
 		else
-			status = change_dir(arg, _getenv("OLDPWD"));
+		{
+			status = change_dir(arg, old_pwd);
+			free(old_pwd);
+		}
 	}
 	else
 	{
